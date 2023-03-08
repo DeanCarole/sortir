@@ -6,7 +6,7 @@
 
 
     <h1>Première page Sortir</h1>
-
+<div class="tableau">
     <table>
         <thead>
         <tr>
@@ -33,11 +33,15 @@
           <td>{{ event.state.label }}</td>
           <td> vide</td>
            <td>{{ event.planner.name }} {{ event.planner.firstName | slice(0,1)}}. </td>
-{#           <td> vide</td>#}
+           <td> vide</td>
 
     {% endfor %}
         </tbody>
     </table>
+</div>
+
+    <a href="{{ path('event_add') }}"><button type="button">Créer une sortie</button></a>
+
 
 
 {% endblock %}

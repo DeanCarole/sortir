@@ -1,3 +1,17 @@
 a:hover {
     color: greenyellow;
 }
+
+.tableau {
+    min-height: 300px;
+    height: 300px; /*pour IE qui comprend rien, et qui ne reconnait pas min-height, mais qui comprend mal height*/
+    min-width: 800px;
+    width: 800px; /*pour IE qui comprend rien*/
+    overflow: auto; /*pour activer les scrollbarres*/
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 6px;
+}
