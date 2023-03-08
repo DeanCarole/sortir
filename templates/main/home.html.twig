@@ -27,10 +27,10 @@
 
         <tr>
             <td>{{event.name}}</td>
-          <td>{{ event.startDateTime | date("m/d/Y h:m")}}</td>
-            <td>{{  event.registrationDeadline | date("m/d/Y")}}</td>
+          <td>{{ event.startDateTime | date("d/m/Y h:m")}}</td>
+            <td>{{  event.registrationDeadline | date("d/m/Y")}}</td>
         <td>   /  {{ event.nbRegistrationMax}}</td>
-          <td>{{ event.state.label }}</td>
+          <td>{{ event.state.label }} coucouc</td>
           <td> vide</td>
            <td>{{ event.planner.name }} {{ event.planner.firstName | slice(0,1)}}. </td>
            <td> vide</td>
