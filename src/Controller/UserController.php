@@ -8,7 +8,10 @@ use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 #[Route('/user', name: 'user_')]
 class UserController extends AbstractController
@@ -32,7 +35,7 @@ class UserController extends AbstractController
 
     //Pour modifier l'utilisateur dans la BDD
     #[Route('/update', name: 'update')]
-    public function update(Request $request,UserRepository $userRepository): Response
+    public function update(Request $request,UserRepository $userRepository, UserPasswordHasherInterface $passwordHasher): Response
     {
         $user = $this->getUser();
         $userForm = $this->createForm(UserType::class, $user);
@@ -48,7 +51,16 @@ class UserController extends AbstractController
             $user->setFirstName($user->getFirstName());
             $user->setPhone($user->getPhone());
             $user->setEmail($user->getEmail());
-            $user->setPassword($user->getPassword());
+
+            // Modifier le mot de passe si le champ est rempli
+            $password = $userForm->get('password')->getData();
+            if ($password) {
+                //$user = new User();
+                $newPassword = $passwordHasher->hashPassword($user, $password);
+                $user->setPassword($newPassword);
+            }
+
+
             $userRepository->save($user,true);
             $this->addFlash('success',"Profil Update !");
 
