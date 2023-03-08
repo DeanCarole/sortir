@@ -2,20 +2,45 @@ a:hover {
     color: greenyellow;
 }
 
+/* -------- Tableau des sorties de la page d'accueil home -------- */
 .tableau {
-    min-height: 300px;
-    height: 300px; /*pour IE qui comprend rien, et qui ne reconnait pas min-height, mais qui comprend mal height*/
-    min-width: 800px;
-    width: 800px; /*pour IE qui comprend rien*/
-    overflow: auto; /*pour activer les scrollbarres*/
+    min-height: 500px;
+    height: 500px; /* pour permettre une hauteur variable en fonction du contenu */
+    min-width: 1200px;
+    width: 1200px; /* pour permettre une largeur variable en fonction du contenu */
+    overflow: auto; /* pour activer la scrollbar */
+    border: 5px solid #009688;
+    border-radius: 5px;
 }
 
-table, th, td {
-    border: 1px solid black;
+table {
     border-collapse: collapse;
-    padding: 6px;
+    width: 100%; /* remplir la largeur de la div parent */
+    margin-bottom: 20px; /* ajouter un espace entre les tableaux */
+    background-color: #fff;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1); /* ajouter une ombre portée */
 }
 
+thead th {
+    position: sticky; /* fixer l'en-tête du tableau */
+    top: 0; /* aligner en haut de la div parent */
+    z-index: 1; /* rendre l'en-tête au-dessus des autres éléments */
+    background-color: #f2f2f2; /* couleur de fond pour l'en-tête */
+    font-weight: bold; /* poids de la police pour l'en-tête */
+    text-transform: uppercase; /* mettre le texte en majuscules pour l'en-tête */
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    text-transform: uppercase;
+}
 
 /* -------- Bouton connexion (page d'accueil logout) -------- */
 .login-button {
@@ -80,5 +105,16 @@ table, th, td {
 .login-button.green {
     background: linear-gradient(to right, #26a69a, #009688);
 }
-/* -------- Fin bouton connexion (page d'accueil logout) -------- */
+
+/* -------- Design message d'erreur si login ou password erroné -------- */
+.error-login-message {
+    border: 2px solid #FF4D4D;
+    background-color: #FFCDD2;
+    color: #FF4D4D;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px #FF4D4D;
+    font-family: 'Helvetica', sans-serif;
+}
 
