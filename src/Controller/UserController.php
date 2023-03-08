@@ -17,11 +17,12 @@ class UserController extends AbstractController
         return $this->render('user/show.html.twig');
     }
  //Pour modifier l'utilisateur
-    #[Route('/update/{id}', name: 'update', requirements: ['id' => '\d+'])]
-    public function update(int $id, UserRepository $userRepository): Response
+    #[Route('/update', name: 'update')]
+    public function update(UserRepository $userRepository): Response
     {
         // récupérer l'utilisateur' et le renvoyer via l'id
-        $user = $userRepository->find($id);
+       // $user = $userRepository->find($id);
+        $user = $this->getUser();
 
         $userForm = $this->createForm(UserType::class, $user);
 
