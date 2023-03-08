@@ -5,6 +5,10 @@
 {% endblock %}
 
 {% block body %}
-
+    <h2>Update Profil</h2>
+    {{ form_start(userForm) }}
+    {{ form_widget(userForm) }}
+    <button>Update</button>
+    {{ form_end(userForm) }}
 {% endblock %}
 

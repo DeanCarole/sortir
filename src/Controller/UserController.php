@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Form\UserType;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -14,10 +16,17 @@ class UserController extends AbstractController
     {
         return $this->render('user/show.html.twig');
     }
-
+ //Pour modifier l'utilisateur
     #[Route('/update/{id}', name: 'update', requirements: ['id' => '\d+'])]
-    public function update(int $id): Response
+    public function update(int $id, UserRepository $userRepository): Response
     {
-        return $this->render('user/update.html.twig');
+        // récupérer l'utilisateur' et le renvoyer via l'id
+        $user = $userRepository->find($id);
+
+        $userForm = $this->createForm(UserType::class, $user);
+
+        return $this->render('user/update.html.twig',['user' => $user,
+            'userForm' => $userForm->createView()
+        ]);
     }
 }
