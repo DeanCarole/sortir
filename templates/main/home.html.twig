@@ -7,12 +7,37 @@
 
     <h1>Première page Sortir</h1>
 
+    <table>
+        <thead>
+        <tr>
+            <th>Nom de la sortie</th>
+            <th>Date de la sortie</th>
+            <th>Clôture</th>
+            <th>inscrits/places</th>
+            <th>Etat</th>
+            <th>Inscrit</th>
+            <th>Organisateur</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+
 
     {% for event in events %}
-        <article>
-            <a href="{{ path('serie_show', {'id': serie.id}) }}">
-                <img src="{{ asset('img/posters/series/' ~ serie.poster) }}" alt="{{ serie.name }}" title="{{ serie.name }} | {{ serie.seasons | length }} seasons"></a>
-        </article>
+
+        <tr>
+            <td>{{event.name}}</td>
+          <td>{{ event.startDateTime | date("m/d/Y h:m")}}</td>
+            <td>{{  event.registrationDeadline | date("m/d/Y")}}</td>
+        <td>   /  {{ event.nbRegistrationMax}}</td>
+          <td>{{ event.state.label }}</td>
+          <td> vide</td>
+           <td>{{ event.planner.name }} {{ event.planner.firstName | slice(0,1)}}. </td>
+{#           <td> vide</td>#}
+
     {% endfor %}
+        </tbody>
+    </table>
+
 
 {% endblock %}
