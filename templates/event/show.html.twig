@@ -4,66 +4,71 @@
 
     <h1>Afficher une sortie</h1>
 
-    <div class="event-block-left">
-        <h2>Infos sortie</h2>
+    <div class="event-block">
 
-        {# Table de conversion des jours en français => utilisé plus bas #}
-        {% set trans_day_hash = {
-            'Monday': 'Lundi',
-            'Tuesday': 'Mardi',
-            'Wednesday': 'Mercredi',
-            'Thursday': 'Jeudi',
-            'Friday': 'Vendredi',
-            'Saturday': 'Samedi',
-            'Sunday': 'Dimanche'
-        } %}
+        <div class="event-block-left">
+            <h2>Infos sortie</h2>
 
-        {# Table de conversion des mois en français => utilisé plus bas #}
-        {% set trans_month_hash = {
-            'Jan': 'Janvier',
-            'Feb': 'Février',
-            'Mar': 'Mars',
-            'Apr': 'Avril',
-            'May': 'Mai',
-            'Jun': 'Juin',
-            'Jul': 'Juillet',
-            'Aug': 'Août',
-            'Sep': 'Septembre',
-            'Oct': 'Octobre',
-            'Nov': 'Novembre',
-            'Dec': 'Décembre'
-        } %}
+            {# Table de conversion des jours en français => utilisé plus bas #}
+            {% set trans_day_hash = {
+                'Monday': 'Lundi',
+                'Tuesday': 'Mardi',
+                'Wednesday': 'Mercredi',
+                'Thursday': 'Jeudi',
+                'Friday': 'Vendredi',
+                'Saturday': 'Samedi',
+                'Sunday': 'Dimanche'
+            } %}
 
-        <ul->
-            <li>Nom de la sortie : {{ event.name }}</li>
-            <li>Date et heure de la sortie : {{ trans_day_hash[event.startDateTime | date('l')] }}
-                {{ event.startDateTime | date('d') }}
-                {{ trans_month_hash[event.startDateTime | date('M')] }}
-                {{ event.startDateTime | date('Y à H:i') }}</li>
-            <li>Date limite d'inscription : {{ trans_day_hash[event.registrationDeadline | date('l')] }}
-                {{ event.registrationDeadline | date('d') }}
-                {{ trans_month_hash[event.registrationDeadline | date('M')] }}
-                {{ event.registrationDeadline | date('Y') }}</li>
-            <li>Nombre de places : {{ event.nbRegistrationMax }}</li>
-            <li>Durée : {{ event.duration }} minutes</li>
-            <li>Description et infos : {{ event.eventData }}</li>
-        </ul->
-    </div>
+            {# Table de conversion des mois en français => utilisé plus bas #}
+            {% set trans_month_hash = {
+                'Jan': 'Janvier',
+                'Feb': 'Février',
+                'Mar': 'Mars',
+                'Apr': 'Avril',
+                'May': 'Mai',
+                'Jun': 'Juin',
+                'Jul': 'Juillet',
+                'Aug': 'Août',
+                'Sep': 'Septembre',
+                'Oct': 'Octobre',
+                'Nov': 'Novembre',
+                'Dec': 'Décembre'
+            } %}
 
-    <div class="event-block-right">
-        <h2>Coordonnées</h2>
-        <ul->
-            <li>Campus : {{ event.campus.name }}</li>
-            <li>Lieu : {{ event.place.name }}</li>
-            <li>Rue : {{ event.place.street}} </li>
-            <li>Code postal : {{ event.place.city.zipCode }}</li>
-            <li>Latitude : {{ event.place.latitude }}</li>
-            <li>Longitude : {{ event.place.longitude}} </li>
-        </ul->
+            <ul>
+                <li>Nom de la sortie : {{ event.name }}</li>
+                <li>Date et heure de la sortie : {{ trans_day_hash[event.startDateTime | date('l')] }}
+                    {{ event.startDateTime | date('d') }}
+                    {{ trans_month_hash[event.startDateTime | date('M')] }}
+                    {{ event.startDateTime | date('Y à H:i') }}</li>
+                <li>Date limite d'inscription : {{ trans_day_hash[event.registrationDeadline | date('l')] }}
+                    {{ event.registrationDeadline | date('d') }}
+                    {{ trans_month_hash[event.registrationDeadline | date('M')] }}
+                    {{ event.registrationDeadline | date('Y') }}</li>
+                <li>Nombre de places : {{ event.nbRegistrationMax }}</li>
+                <li>Durée : {{ event.duration }} minutes</li>
+                <li>Description et infos : {{ event.eventData }}</li>
+            </ul>
+        </div>
+
+        <div class="event-block-right">
+            <h2>Coordonnées</h2>
+            <ul>
+                <li>Campus : {{ event.campus.name }}</li>
+                <li>Lieu : {{ event.place.name }}</li>
+                <li>Rue : {{ event.place.street}} </li>
+                <li>Code postal : {{ event.place.city.zipCode }}</li>
+                <li>Latitude : {{ event.place.latitude }}</li>
+                <li>Longitude : {{ event.place.longitude}} </li>
+            </ul>
+        </div>
     </div>
 
     <div class="event-block-users">
-        <h2>Liste des participants</h2>
+        <h2>Liste des participants inscrits :</h2>
+
+        <h3 style="color: darkred"> >> TODO: faire remonter la liste des users inscrits à la sortie dans une boucle d'affichage des tr/td << </h3>
 
         <table>
             <thead>

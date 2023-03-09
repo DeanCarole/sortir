@@ -33,7 +33,7 @@
           <td>{{ event.state.label }} coucouc</td>
           <td> vide</td>
            <td>{{ event.planner.name }} {{ event.planner.firstName | slice(0,1)}}. </td>
-           <td> vide</td>
+           <td><a href="{{ path('event_show', {'id' : event.id}) }}">Afficher</a></td>
 
     {% endfor %}
         </tbody>

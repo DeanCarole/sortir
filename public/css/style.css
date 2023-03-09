@@ -118,8 +118,7 @@ th {
     font-family: 'Helvetica', sans-serif;
 }
 
-/*************************** Flash Update Profil *******************************/
-
+/* -------- Message flash update profil user -------- */
 .flash {
     padding: 20px;
     font-weight: bold;
@@ -132,3 +131,24 @@ th {
 .flash-success {
     background-color: lawngreen
 }
+
+/* -------- Design affichage d'une sortie (show) : gestion des deux blocs "infos sortie" et "coordonnées" -------- */
+.event-block-left, .event-block-right {
+    display: inline-block;
+    width: 45%;
+    vertical-align: top;
+    margin-right: 5%;
+}
+
+.event-block-right {
+    margin-right: 0;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+
+
