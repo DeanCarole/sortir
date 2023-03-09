@@ -7,24 +7,46 @@
     <div class="block-left">
         <h2>Infos sortie</h2>
 
+        {# Table de conversion des jours en français => utilisé plus bas #}
         {% set trans_day_hash = {
-            "Monday": "Lundi",
-            "Tuesday": "Mardi",
-            "Wednesday": "Mercredi",
-            "Thursday": "Jeudi",
-            "Friday": "Vendredi",
-            "Saturday": "Samedi",
-            "Sunday": "Dimanche"
-        }
-        %}
+            'Monday': 'Lundi',
+            'Tuesday': 'Mardi',
+            'Wednesday': 'Mercredi',
+            'Thursday': 'Jeudi',
+            'Friday': 'Vendredi',
+            'Saturday': 'Samedi',
+            'Sunday': 'Dimanche'
+        } %}
+
+        {# Table de conversion des mois en français => utilisé plus bas #}
+        {% set trans_month_hash = {
+            'Jan': 'Janvier',
+            'Feb': 'Février',
+            'Mar': 'Mars',
+            'Apr': 'Avril',
+            'May': 'Mai',
+            'Jun': 'Juin',
+            'Jul': 'Juillet',
+            'Aug': 'Août',
+            'Sep': 'Septembre',
+            'Oct': 'Octobre',
+            'Nov': 'Novembre',
+            'Dec': 'Décembre'
+        } %}
 
         <ul->
             <li>Nom de la sortie : {{ event.name }}</li>
-            <li>Date & heure de la sortie : {{ trans_day_hash[event.startDateTime | date('l')] }} {{ event.startDateTime | date('d M Y à H:i') }}</li>
-            <li>Date limite d'inscription : {{ trans_day_hash[event.startDateTime | date('l')] }} {{ event.registrationDeadline | date('d M Y') }}</li>
+            <li>Date et heure de la sortie : {{ trans_day_hash[event.startDateTime | date('l')] }}
+                {{ event.startDateTime | date('d') }}
+                {{ trans_month_hash[event.startDateTime | date('M')] }}
+                {{ event.startDateTime | date('Y à H:i') }}</li>
+            <li>Date limite d'inscription : {{ trans_day_hash[event.registrationDeadline | date('l')] }}
+                {{ event.registrationDeadline | date('d') }}
+                {{ trans_month_hash[event.registrationDeadline | date('M')] }}
+                {{ event.registrationDeadline | date('Y') }}</li>
             <li>Nombre de places : {{ event.nbRegistrationMax }}</li>
             <li>Durée : {{ event.duration }} minutes</li>
-            <li>Description & infos : {{ event.eventData }}</li>
+            <li>Description et infos : {{ event.eventData }}</li>
         </ul->
     </div>
 
