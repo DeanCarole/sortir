@@ -57,7 +57,7 @@ class Update
             $state = $this->stateRepository->findOneBy(['label'=>'closed']);
             $event->setState($state);
         }
-
+//coucou
 //        if($event->getId() == 9){
 //            dump($event);
 //        }
