@@ -31,8 +31,6 @@ class Update
        $event1 = clone $event->getStartDateTime();
        $event1->modify("+" .$event->getDuration() . "minute");
 
-
-
         //condition pour modifier l'évènement
         if ($event->getStartDateTime() < new \DateTime('-1 month') ) {
             $state = $this->stateRepository->findOneBy(['label'=>'archived']);
