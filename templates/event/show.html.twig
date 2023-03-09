@@ -57,10 +57,10 @@
             <ul>
                 <li>Campus : {{ event.campus.name }}</li>
                 <li>Lieu : {{ event.place.name }}</li>
-                <li>Rue : {{ event.place.street}} </li>
+                <li>Rue : {{ event.place.street }} </li>
                 <li>Code postal : {{ event.place.city.zipCode }}</li>
                 <li>Latitude : {{ event.place.latitude }}</li>
-                <li>Longitude : {{ event.place.longitude}} </li>
+                <li>Longitude : {{ event.place.longitude }} </li>
             </ul>
         </div>
     </div>
@@ -68,25 +68,30 @@
     <div class="event-block-users">
         <h2>Liste des participants inscrits :</h2>
 
-        <h3 style="color: darkred"> >> TODO: faire remonter la liste des users inscrits à la sortie dans une boucle d'affichage des tr/td << </h3>
+        <h3 style="color: darkred"> >> TODO: faire remonter la liste des users inscrits à la sortie dans une boucle
+            d'affichage des tr/td << </h3>
 
         <table>
             <thead>
-                <tr>
-                    <th>Pseudo</th>
-                    <th>Nom</th>
-                </tr>
+            <tr>
+                <th>Pseudo</th>
+                <th>Nom</th>
+            </tr>
             </thead>
             <tbody>
             {# TODO : faire remonter la liste des users inscrits à la sortie dans une boucle d'affichage des tr/td #}
-                <tr>
-                    <td>Utilisateur1</td>
-                    <td>Nom1</td>
-                </tr>
-                <tr>
-                    <td>Utilisateur2</td>
-                    <td>Nom2</td>
-                </tr>
+            <tr>
+                <td>Utilisateur1</td>
+                <td>Nom1</td>
+            </tr>
+            <tr>
+                <td>Utilisateur2</td>
+                <td>Nom2</td>
+            </tr>
+            <tr>
+                <td>Utilisateur 3</td>
+                <td>Nom 3</td>
+            </tr>
             </tbody>
         </table>
     </div>

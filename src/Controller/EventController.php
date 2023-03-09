@@ -46,7 +46,7 @@ class EventController extends AbstractController
         $event = $eventRepository->find($id);
 
         if(!$event){
-            //Lance une erreur 404 si l'event n'existe pas
+            //Lance une erreur 404 si l'utilisateur n'existe pas
             throw $this->createNotFoundException("Oups ! Cette sortie n'existe pas !");
         }
 
