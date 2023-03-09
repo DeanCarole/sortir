@@ -4,7 +4,7 @@
 
     <h1>Afficher une sortie</h1>
 
-    <div class="block-left">
+    <div class="event-block-left">
         <h2>Infos sortie</h2>
 
         {# Table de conversion des jours en français => utilisé plus bas #}
@@ -50,7 +50,7 @@
         </ul->
     </div>
 
-    <div class="block-right">
+    <div class="event-block-right">
         <h2>Coordonnées</h2>
         <ul->
             <li>Campus : {{ event.campus.name }}</li>
@@ -60,8 +60,32 @@
             <li>Latitude : {{ event.place.latitude }}</li>
             <li>Longitude : {{ event.place.longitude}} </li>
         </ul->
-
     </div>
+
+    <div class="event-block-users">
+        <h2>Liste des participants</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Pseudo</th>
+                    <th>Nom</th>
+                </tr>
+            </thead>
+            <tbody>
+            {# TODO : faire remonter la liste des users inscrits à la sortie dans une boucle d'affichage des tr/td #}
+                <tr>
+                    <td>Utilisateur1</td>
+                    <td>Nom1</td>
+                </tr>
+                <tr>
+                    <td>Utilisateur2</td>
+                    <td>Nom2</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
 
 {% endblock %}
 
