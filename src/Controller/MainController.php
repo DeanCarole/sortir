@@ -17,8 +17,9 @@ class MainController extends AbstractController
     public function home(EventRepository $eventRepository, Update $update): Response
     {
         $user = $this->getUser();
-    $events = $eventRepository->findAll();
-    $update->updateState();
+        //$events = $eventRepository->findAll();
+        $events = $eventRepository->findAll();
+        $update->updateState();
 
 
 

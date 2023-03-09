@@ -39,6 +39,29 @@ class EventRepository extends ServiceEntityRepository
         }
     }
 
+
+//    public function findAllEvents(){
+//
+//        // Requête en QueryBuilder de récupération de la liste des sorties
+//        $qb = $this->createQueryBuilder('e');
+//        $qb
+//            //Jointure sur les attributs d'instance
+//            ->leftJoin('e.user', 'user')
+//            //Récupération des colonnes de la jointure
+//            ->addSelect('user')
+//
+//            //TODO : jointure également sur l'organisateur
+//
+//            ->leftJoin('e.state', 'state')
+//            ->addSelect('state');
+//
+//        //Renvoie une instance de Query
+//        $query = $qb->getQuery();
+//
+//        return $query->getResult();
+//    }
+
+
 //    /**
 //     * @return Event[] Returns an array of Event objects
 //     */
