@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <h1>Afficher une sortie</h1>
+
+    <div class="block-left">
+        <h2>Infos sortie</h2>
+
+        {% set trans_day_hash = {
+            "Monday": "Lundi",
+            "Tuesday": "Mardi",
+            "Wednesday": "Mercredi",
+            "Thursday": "Jeudi",
+            "Friday": "Vendredi",
+            "Saturday": "Samedi",
+            "Sunday": "Dimanche"
+        }
+        %}
+
+        <ul->
+            <li>Nom de la sortie : {{ event.name }}</li>
+            <li>Date & heure de la sortie : {{ trans_day_hash[event.startDateTime | date('l')] }} {{ event.startDateTime | date('d M Y à H:i') }}</li>
+            <li>Date limite d'inscription : {{ trans_day_hash[event.startDateTime | date('l')] }} {{ event.registrationDeadline | date('d M Y') }}</li>
+            <li>Nombre de places : {{ event.nbRegistrationMax }}</li>
+            <li>Durée : {{ event.duration }} minutes</li>
+            <li>Description & infos : {{ event.eventData }}</li>
+        </ul->
+    </div>
+
+    <div class="block-right">
+        <h2>Coordonnées</h2>
+        <ul->
+            <li>Campus : {{ event.campus.name }}</li>
+            <li>Lieu : {{ event.place.name }}</li>
+            <li>Rue : {{ event.place.street}} </li>
+            <li>Code postal : {{ event.place.city.zipCode }}</li>
+            <li>Latitude : {{ event.place.latitude }}</li>
+            <li>Longitude : {{ event.place.longitude}} </li>
+        </ul->
+
+    </div>
+
+{% endblock %}
+
+{% block title %}
+
+{% endblock %}
+
