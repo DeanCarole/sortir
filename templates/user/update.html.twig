@@ -8,6 +8,8 @@
     <h2>Update Profil</h2>
     {{ form_start(userForm) }}
     {{ form_widget(userForm) }}
+    {{ form_errors(userForm) }}
+
     <button>Update</button>
     {{ form_end(userForm) }}
 

@@ -45,13 +45,6 @@ class UserController extends AbstractController
             // récupérer les données du formulaire
             $user = $userForm->getData();
 
-            // mettre à jour les champs modifiables de l'utilisateur
-            $user->setUsername($user->getUsername());
-            $user->setName($user->getName());
-            $user->setFirstName($user->getFirstName());
-            $user->setPhone($user->getPhone());
-            $user->setEmail($user->getEmail());
-
             // Modifier le mot de passe si le champ est rempli
             $password = $userForm->get('password')->getData();
             if ($password) {
@@ -60,9 +53,8 @@ class UserController extends AbstractController
                 $user->setPassword($newPassword);
             }
 
-
             $userRepository->save($user,true);
-            $this->addFlash('success',"Profil Update !");
+            $this->addFlash('success',"Profil modifié !");
 
             // rediriger l'utilisateur vers une autre page
             return $this->redirectToRoute('main_home');
