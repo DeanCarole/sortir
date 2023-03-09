@@ -37,10 +37,11 @@ class Update
         if ($event->getStartDateTime() < new \DateTime('-1 month') ) {
             $state = $this->stateRepository->findOneBy(['label'=>'archived']);
             $event->setState($state);
-        } else  if ($event->getStartDateTime() < new \DateTime() && $event->getStartDateTime() > new \DateTime('-1 month'))  {
+        } else  if (($event->getStartDateTime() < new \DateTime()) && ($event->getStartDateTime() > new \DateTime('-1 month')))  {
             $state = $this->stateRepository->findOneBy(['label'=>'finished']);
             $event->setState($state);
-        } else if ($event->getStartDateTime() >= new \DateTime('now')  &&  $event->getStartDateTime()< $event1 ) {
+        //} else if ((new \DateTime('now') >= $event->getStartDateTime()) &&  ( $event->getStartDateTime() < $event1 )) {
+        } else if (($event->getStartDateTime() >= new \DateTime()) && ($event->getStartDateTime()< $event1 )) {
             $state = $this->stateRepository->findOneBy(['label'=>'inProgress']);
             $event->setState($state);
         } else if ((new \DateTime() > $event->getRegistrationDeadline())){
