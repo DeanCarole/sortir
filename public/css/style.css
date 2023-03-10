@@ -41,10 +41,12 @@ th {
     font-weight: bold;
     text-transform: uppercase;
 }
-/* -------- Image profil -------- */
+/* -------- Image profil user -------- */
 img {
     max-width: 15%;
     min-width: 140px;
+    border: 5px solid #009688;
+    border-radius: 5px;
 }
 /* -------- Bouton connexion (page d'accueil logout) -------- */
 .login-button {
