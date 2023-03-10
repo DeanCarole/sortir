@@ -3,12 +3,10 @@
 namespace App\Controller;
 
 
-use App\Entity\Event;
-use App\Entity\User;
+
 use App\Repository\EventRepository;
 use App\Repository\UserRepository;
 use App\Services\Update;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
