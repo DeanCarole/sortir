@@ -31,9 +31,10 @@
             <td>{{  event.registrationDeadline | date("d/m/Y")}}</td>
         <td>   /  {{ event.nbRegistrationMax}}</td>
           <td>{{ event.state.label }}</td>
-          <td> vide</td>
+            <td>{% for user in event.user %} X {% endfor %}</td>
            <td>{{ event.planner.name }} {{ event.planner.firstName | slice(0,1)}}. </td>
-           <td><a href="{{ path('event_show', {'id' : event.id}) }}">Afficher</a> - <a href="{{ path('main_addUserEvent', {'id':event.id}) }}">S'incrire</a></td>
+           <td><a href="{{ path('event_show', {'id' : event.id}) }}">Afficher</a> - <a href="{{ path('main_addUserEvent', {'id':event.id}) }}">S'incrire</a>
+               {% for user in event.user %}   - <a href="{{ path('main_addUserEvent', {'id':event.id}) }}">Se désinscrire </a>{% endfor %}</td>
 
     {% endfor %}
         </tbody>
