@@ -3,9 +3,12 @@
 namespace App\Controller;
 
 
+use App\Entity\Event;
+use App\Entity\User;
 use App\Repository\EventRepository;
 use App\Repository\UserRepository;
 use App\Services\Update;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -17,7 +20,7 @@ class MainController extends AbstractController
     public function home(EventRepository $eventRepository, Update $update): Response
     {
         $user = $this->getUser();
-        //$events = $eventRepository->findAll();
+
         $events = $eventRepository->findAll();
         $update->updateState();
 
@@ -27,19 +30,26 @@ class MainController extends AbstractController
         return $this->render('main/home.html.twig', ['events'=>$events ,'user'=>$user]);
     }
 
-    #[Route('/home', name: 'main_addUserEvent')]
-    public function addUserEvent(int $id, EventRepository $eventRepository): Response
+
+    #[Route('/home/{id}', name: 'main_addUserEvent', requirements: ['id' => '\d+'])]
+    public function addUserEvent(int $id, EventRepository $eventRepository, UserRepository $userRepository): Response
     {
-        $user = $this->getUser();
         $event = $eventRepository->find($id);
-        if(!$user){
-            throw $this->createNotFoundException("Oops ! User not found !");
-        }
+        $user = $this->getUser();
+        $user->addEvent($event);
+        $event->addUser($user);
+
+        $userRepository->save($user,true);
+        $eventRepository->save($event, true);
+
+
 
         return $this->render('event/show.html.twig', [
-            'user' => $user
+            'user' => $user, 'event' => $event
         ]);
     }
-
-
 }
+
+//        $entityManager->persist($user);
+//        $entityManager->persist($event);
+//        $entityManager->flush();
