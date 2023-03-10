@@ -105,7 +105,16 @@ th {
 .login-button.green {
     background: linear-gradient(to right, #26a69a, #009688);
 }
+/* -------- Navbar -------- */
+nav ul {
+    display: flex;
+    list-style: none;
+    padding-left: 0;
+}
 
+nav li {
+    margin-right: 1rem; /*pourcentage de taille en fonction du zoom 1 rem = 10px pour zoom = 100%*/
+}
 /* -------- Design message d'erreur si login ou password erroné -------- */
 .error-login-message {
     border: 2px solid #FF4D4D;
