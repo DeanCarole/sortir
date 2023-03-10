@@ -48,6 +48,7 @@ class EventType extends AbstractType
                 'choice_label' => 'name',
                 'label' => 'Lieu : '
             ])
+
         ;
     }
 

@@ -142,6 +142,10 @@ class Event
         return $this->place;
     }
 
+
+
+
+
     public function setPlace(?Place $place): self
     {
         $this->place = $place;
@@ -154,8 +158,11 @@ class Event
         return $this->state;
     }
 
+
+    #[ORM\PrePersist]
     public function setState(?State $state): self
     {
+        $state->setLabel("created");
         $this->state = $state;
 
         return $this;
