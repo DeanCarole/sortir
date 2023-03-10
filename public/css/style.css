@@ -41,7 +41,11 @@ th {
     font-weight: bold;
     text-transform: uppercase;
 }
-
+/* -------- Image profil -------- */
+img {
+    max-width: 15%;
+    min-width: 140px;
+}
 /* -------- Bouton connexion (page d'accueil logout) -------- */
 .login-button {
     font-size: 1.2rem;
