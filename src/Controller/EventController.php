@@ -39,7 +39,6 @@ class EventController extends AbstractController
             $eventRepository->save($event, true);
             $this->addFlash('success', "Sortie créée !");
 
-
         }
 
         $places = $placeRepository->findAll();

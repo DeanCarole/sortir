@@ -21,10 +21,8 @@ class MainController extends AbstractController
     {
         $user = $this->getUser();
 
-        $events = $eventRepository->findAll();
+        $events = $eventRepository->findAllEvents();
         $update->updateState();
-
-
 
 
         return $this->render('main/home.html.twig', ['events'=>$events ,'user'=>$user]);

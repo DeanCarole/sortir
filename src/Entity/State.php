@@ -18,7 +18,7 @@ class State
     #[ORM\Column(length: 50)]
     private ?string $label = null;
 
-    #[ORM\OneToMany(mappedBy: 'state', targetEntity: Event::class)]
+    #[ORM\OneToMany(mappedBy: 'state', targetEntity: Event::class, fetch: 'LAZY')]
     private Collection $events;
 
     public function __construct()

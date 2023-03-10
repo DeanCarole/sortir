@@ -39,27 +39,43 @@ class EventRepository extends ServiceEntityRepository
         }
     }
 
+    public function findAllEvents(){
 
-//    public function findAllEvents(){
-//
-//        // Requête en QueryBuilder de récupération de la liste des sorties
-//        $qb = $this->createQueryBuilder('e');
-//        $qb
-//            //Jointure sur les attributs d'instance
-//            ->leftJoin('e.user', 'user')
-//            //Récupération des colonnes de la jointure
-//            ->addSelect('user')
-//
-//            //TODO : jointure également sur l'organisateur
-//
-//            ->leftJoin('e.state', 'state')
-//            ->addSelect('state');
-//
-//        //Renvoie une instance de Query
-//        $query = $qb->getQuery();
-//
-//        return $query->getResult();
-//    }
+        /* Requête en QueryBuilder => récupération de la liste des sorties
+        Optimisation du nombre de requêtes */
+        $qb = $this->createQueryBuilder('e');
+        $qb
+            //Jointure avec table state
+            ->leftJoin('e.state', 'state')
+            ->addSelect('state')
+
+            //Jointure avec table place
+            ->leftJoin('e.place', 'place')
+            ->addSelect('place')
+
+            //Jointure avec table user pour obtenir l'orgainsateur
+            ->leftJoin('e.planner', 'planner')
+            ->addSelect('planner')
+
+            //Jointure avec table campus
+            ->leftJoin('e.campus', 'campus')
+            ->addSelect('campus')
+
+            //Jointure avec table user
+            ->leftJoin('e.user', 'user')
+            ->addSelect('user');
+
+        // >>> Finir filtre archivé
+//            ->andWhere('e.state <> :label')
+//            ->setParameter('label', 'archived');
+
+            /* ->Where('e.state.label' != 'archived'); */
+
+        //Renvoie une instance de Query
+        $query = $qb->getQuery();
+
+        return $query->getResult();
+    }
 
 
 //    /**
