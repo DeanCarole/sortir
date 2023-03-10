@@ -58,10 +58,9 @@ class UserType extends AbstractType
                 'constraints' =>[
                     new Image([
                         "maxSize"=>'7000k',
-                        "mimeTypesMessage" => "Image format not allowed !"
+                        "mimeTypesMessage" => "Ce format n'est pas pris en charge !"
                     ])
                 ]
-
             ])
         ;
     }

@@ -5,6 +5,8 @@ namespace App\Controller;
 
 use App\Form\UserType;
 use App\Repository\UserRepository;
+use App\Services\Uploader;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -34,13 +36,17 @@ class UserController extends AbstractController
 
     //Pour modifier l'utilisateur dans la BDD
     #[Route('/update', name: 'update')]
-    public function update(Request $request,UserRepository $userRepository, UserPasswordHasherInterface $passwordHasher): Response
+    public function update(Request $request,
+                           UserRepository $userRepository,
+                           UserPasswordHasherInterface $passwordHasher,
+                           Uploader $uploader): Response
     {
         $user = $this->getUser();
         $userForm = $this->createForm(UserType::class, $user);
         $userForm->handleRequest($request);
 
         if ($userForm->isSubmitted() && $userForm->isValid()) {
+
             // récupérer les données du formulaire
             $user = $userForm->getData();
 
@@ -52,12 +58,29 @@ class UserController extends AbstractController
                 $user->setPassword($newPassword);
             }
 
+            //Gestion de l'upload de photo d'une série nouvellement créée
+            /**
+             * @var UploadedFile $file
+             */
+            $file = $userForm->get('picture')->getData();
+
+            //Appel de la méthode upload de notre service Uploader
+            $newFileName = $uploader->upload(
+                $file,
+                $this->getParameter('upload_user_picture'),
+                $user->getUserIdentifier());
+
+            //Sette le nouveau nom du
+            $user->setPicture($newFileName);
+
             $userRepository->save($user,true);
             $this->addFlash('success',"Profil modifié !");
 
             // rediriger l'utilisateur vers une autre page
             return $this->redirectToRoute('main_home');
         }
+
+
 
         return $this->render('user/update.html.twig',['user' => $user,
             'userForm' => $userForm->createView()

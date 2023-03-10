@@ -7,9 +7,13 @@
 {% block body %}
 <div class="container">
     <h2>Update Profil</h2>
+    <img src="{{ asset('img/users/') ~ user.picture }}" alt="user picture">
+
     {{ form_start(userForm) }}
+    {{ form_label(userForm) }}
     {{ form_widget(userForm) }}
     {{ form_errors(userForm) }}
+    {{ form_rest(userForm) }}
 
     <button>Update</button>
     {{ form_end(userForm) }}
