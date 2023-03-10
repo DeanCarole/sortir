@@ -18,8 +18,10 @@ class MainController extends AbstractController
     public function home(EventRepository $eventRepository, Update $update): Response
     {
         $user = $this->getUser();
-        $events = $eventRepository->findAllEvents();
         $update->updateState();
+
+        $events = $eventRepository->findAllEvents();
+
 
 
         return $this->render('main/home.html.twig', ['events'=>$events ,'user'=>$user]);
