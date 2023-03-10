@@ -162,7 +162,7 @@ class Event
     #[ORM\PrePersist]
     public function setState(?State $state): self
     {
-        $state->setLabel("created");
+
         $this->state = $state;
 
         return $this;
