@@ -150,5 +150,31 @@ ul {
     margin: 0;
 }
 
+/*-------------------------Formulaire créer une sortie ------------------------------------------------*/
 
+
+.container {
+    max-width: 1500px;
+    margin: auto;
+    padding: 5px;
+
+}
+label {
+    display: block;
+}
+
+input,
+select {
+    margin-bottom: 1rem;
+    box-sizing: border-box;
+    width: 200px;
+    max-width: 50%;
+}
+
+textarea{
+    margin-bottom: 1rem;
+    box-sizing: border-box;
+    width: 400px;
+    height: 100px;
+}
 
