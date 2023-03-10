@@ -33,8 +33,11 @@ class MainController extends AbstractController
     public function addUserEvent(int $id, EventRepository $eventRepository, UserRepository $userRepository): Response
     {
         $event = $eventRepository->find($id);
+
+
         $user = $this->getUser();
         $user->addEvent($event);
+        $users = $event->getUser();
         $event->addUser($user);
 
         $userRepository->save($user,true);
@@ -43,7 +46,7 @@ class MainController extends AbstractController
 
 
         return $this->render('event/show.html.twig', [
-            'user' => $user, 'event' => $event
+            'users' => $users, 'event' => $event
         ]);
     }
 }

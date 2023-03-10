@@ -73,6 +73,7 @@
 
         <table>
             <thead>
+
             <tr>
                 <th>Pseudo</th>
                 <th>Nom</th>
@@ -80,18 +81,13 @@
             </thead>
             <tbody>
             {# TODO : faire remonter la liste des users inscrits à la sortie dans une boucle d'affichage des tr/td #}
+            {% for user in users %}
             <tr>
-                <td>Utilisateur1</td>
-                <td>Nom1</td>
+                <td>  {{ user.username }}</td>
+                <td>{{ user.name }}</td>
             </tr>
-            <tr>
-                <td>Utilisateur2</td>
-                <td>Nom2</td>
-            </tr>
-            <tr>
-                <td>Utilisateur 3</td>
-                <td>Nom 3</td>
-            </tr>
+
+            {% endfor %}
             </tbody>
         </table>
     </div>
