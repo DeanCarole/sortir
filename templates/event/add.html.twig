@@ -21,11 +21,6 @@
     {{ form_row(eventForm.campus) }}
     {{ form_row(eventForm.place) }}
 
-
-
-
-
-
     <label for="street">Rue : </label>
     <input type="text" name="street">
     <label for="zipCode">Code postal : </label>
@@ -39,7 +34,7 @@
     {{ form_end(eventForm) }}
 
     <a href="{{ path('place_add') }}"><button type="button" class="login-button green">Créer un lieu</button></a>
-    <a href="{{ path('main_home') }}"><button type="button" class="login-button green">Annuler</button></a>
+    <a href="{{ path('main_home') }}"><button type="button" class="login-button">Annuler</button></a>
 
 
     </div>

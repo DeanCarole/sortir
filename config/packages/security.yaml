@@ -45,6 +45,14 @@ security:
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/home, roles: ROLE_USER }
+        - { path: ^/event/, roles: ROLE_USER }
+        - { path: ^/event/add, roles: ROLE_USER }
+        - { path: ^/(user | place), roles: ROLE_USER }
+        - { path: ^/login, roles: PUBLIC_ACCESS }
+
+    role_hierarchy:
+        ROLE_ADMIN: ROLE_USER
 
 when@test:
     security:

@@ -7,7 +7,11 @@
 {% block body %}
 <div class="container">
     <h2>Update Profil</h2>
-    <img src="{{ asset('img/users/') ~ user.picture }}" alt="user picture">
+
+    {# TODO : affichage si photo #}
+    {% if user.picture is null %}
+        <img src="{{ asset('img/users/') ~ user.picture }}" alt="user picture">
+    {% endif %}
 
     {{ form_start(userForm) }}
     {{ form_label(userForm) }}
@@ -15,11 +19,11 @@
     {{ form_errors(userForm) }}
     {{ form_rest(userForm) }}
 
-    <button>Update</button>
+    <button type="button" class="login-button green">Enregistrer</button>
     {{ form_end(userForm) }}
 
     <a href="{{ path('main_home') }}">
-        <button>Annuler</button>
+        <button type="button" class="login-button">Annuler</button>
     </a>
 </div>
 {% endblock %}
