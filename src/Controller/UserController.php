@@ -4,6 +4,7 @@ namespace App\Controller;
 
 
 use App\Form\UserType;
+use App\Repository\EventRepository;
 use App\Repository\UserRepository;
 use App\Services\Uploader;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -17,10 +18,15 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/user', name: 'user_')]
 class UserController extends AbstractController
 {
-    #[Route('/show', name: 'show')]
-    public function show(int $id): Response
+    #[Route('/show/{id}', name: 'show',requirements: ['id'=> '\d+'])]
+    public function show(int $id, EventRepository $eventRepository, UserRepository $userRepository): Response
     {
-        return $this->render('user/show.html.twig');
+        $user = $userRepository->find($id);
+        $event = $eventRepository->find($id);
+
+        return $this->render('user/show.html.twig', [
+            'event' => $event, 'user' => $user
+        ]);
     }
  //Pour afficher l'utilisateur modifiable
 //    #[Route('/update', name: 'update')]
