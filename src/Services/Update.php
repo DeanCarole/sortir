@@ -21,7 +21,7 @@ class Update
     //modifier statut d'un évènement suivant la date de début de la sortie
 
     //récupère toutes les sorties avec le repository
-    $events = $this->eventRepository->findAll();
+    $events = $this->eventRepository->findAllEvents();
 
     //boucle sur chaque évènement
     foreach ($events as $event) {
