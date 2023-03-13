@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Event;
+use App\Form\Filter\Filter;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -47,6 +48,8 @@ class EventRepository extends ServiceEntityRepository
         $qb
             //Jointure avec table state
             ->leftJoin('e.state', 'state')
+            ->andWhere('state.label = :archived')
+            ->setParameter('archived', 'archived')
             ->addSelect('state')
 
             //Jointure avec table place
@@ -65,11 +68,10 @@ class EventRepository extends ServiceEntityRepository
             ->leftJoin('e.user', 'user')
             ->addSelect('user');
 
-        // >>> Finir filtre archivé
-//            ->andWhere('e.state <> :label')
-//            ->setParameter('label', 'archived');
-
-            /* ->Where('e.state.label' != 'archived'); */
+//        if($filter->getCampus() == 'Rennes'){
+//            $qb->andWhere('campus.name = :campusName')
+//                ->setParameter('campusName', 'Rennes');
+//        }
 
         //Renvoie une instance de Query
         $query = $qb->getQuery();

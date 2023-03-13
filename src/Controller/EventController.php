@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class EventController extends AbstractController
 {
     #[Route('/add', name: 'add')]
-    public function add( Request $request, EventRepository $eventRepository, PlaceRepository $placeRepository, StateRepository $stateRepository): Response
+    public function add(Request $request, EventRepository $eventRepository, PlaceRepository $placeRepository, StateRepository $stateRepository): Response
     {
         //crée un évènement vide
         $event = new Event();

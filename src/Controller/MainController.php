@@ -4,10 +4,12 @@ namespace App\Controller;
 
 
 
+use App\Form\FilterType;
 use App\Repository\EventRepository;
 use App\Repository\UserRepository;
 use App\Services\Update;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -15,16 +17,23 @@ use Symfony\Component\Routing\Annotation\Route;
 class MainController extends AbstractController
 {
     #[Route('/home', name: 'main_home')]
-    public function home(EventRepository $eventRepository, Update $update): Response
+    public function home(EventRepository $eventRepository, Update $update, Request $request): Response
     {
         $user = $this->getUser();
         $update->updateState();
 
+
+        //Liste l'ensemble des sorties
         $events = $eventRepository->findAllEvents();
 
+        //Création fomrulaire des filtres
+        $filterForm = $this->createForm(FilterType::class);
+        //$filterForm->handleRequest($request);
 
-
-        return $this->render('main/home.html.twig', ['events'=>$events ,'user'=>$user]);
+        return $this->render('main/home.html.twig', [
+            'events'=>$events ,
+            'user'=>$user,
+            'filterForm' => $filterForm->createView()]);
     }
 
 
