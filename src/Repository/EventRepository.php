@@ -48,7 +48,7 @@ class EventRepository extends ServiceEntityRepository
         $qb
             //Jointure avec table state
             ->leftJoin('e.state', 'state')
-            ->andWhere('state.label = :archived')
+            ->andWhere('state.label != :archived')
             ->setParameter('archived', 'archived')
             ->addSelect('state')
 
