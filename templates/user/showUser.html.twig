@@ -7,10 +7,11 @@
 {% block body %}
     <div>
     <h2>{{ user.name }}</h2>
-
+            <div>name:{{ user.name }}</div>
             <div> FirstName : {{ user.firstName }} </div>
             <div> phone:{{ user.phone }} </div>
             <div>email:{{ user.email }} </div>
+            <a href=javascript:history.go(-3)>Back</a>
 
         </div>
 {% endblock %}
