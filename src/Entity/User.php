@@ -289,4 +289,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+    public function isRegister(Event $event): bool
+    {
+        return $this->events->contains($event);
+    }
+
 }
