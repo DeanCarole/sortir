@@ -28,17 +28,18 @@ class UserController extends AbstractController
             'event' => $event, 'user' => $user
         ]);
     }
- //Pour afficher l'utilisateur modifiable
-//    #[Route('/update', name: 'update')]
-//    public function update(Request $request,UserRepository $userRepository): Response
-//    {
-//        $user = $this->getUser();
-//        $userForm = $this->createForm(UserType::class, $user);
-//
-//        return $this->render('user/update.html.twig',['user' => $user,
-//            'userForm' => $userForm->createView()
-//        ]);
-//    }
+
+    #[Route('/showUser/{id}', name: 'showuserevent',requirements: ['id'=> '\d+'])]
+    public function showUserEvent(int $id, EventRepository $eventRepository, UserRepository $userRepository): Response
+    {
+        $user = $userRepository->find($id);
+        $event = $eventRepository->find($id);
+
+        return $this->render('user/showUser.html.twig', [
+            'event' => $event, 'user' => $user
+        ]);
+    }
+
 
     //Pour modifier l'utilisateur dans la BDD
     #[Route('/update', name: 'update')]
