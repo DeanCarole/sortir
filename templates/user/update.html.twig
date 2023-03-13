@@ -9,7 +9,7 @@
     <h2>Update Profil</h2>
 
     {# TODO : affichage si photo #}
-    {% if user.picture is null %}
+    {% if user.picture is not null %}
         <img src="{{ asset('img/users/') ~ user.picture }}" alt="user picture">
     {% endif %}
 
@@ -19,7 +19,7 @@
     {{ form_errors(userForm) }}
     {{ form_rest(userForm) }}
 
-    <button type="button" class="login-button green">Enregistrer</button>
+    <button type="submit" class="login-button green">Enregistrer</button>
     {{ form_end(userForm) }}
 
     <a href="{{ path('main_home') }}">

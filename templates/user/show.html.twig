@@ -1,12 +1,23 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<div>
-    <h2>{{ event.planner.name }}</h2>
-    <div> FirstName : {{ event.planner.firstName }} </div>
-    <div> phone:{{ event.planner.phone }} </div>
-    <div>emil :{{ event.planner.email }} </div>
+    <div class="container">
 
+
+            <img src="{{ asset('img/users/') ~ event.planner.picture }}" alt="user picture">
+
+
+
+
+        <h2>{{ event.planner.username }}</h2>
+        <div> Nom : {{ event.planner.name }} </div>
+        <div> Prénom : {{ event.planner.firstName }} </div>
+        <div> Téléphone : {{ event.planner.phone }} </div>
+        <div> Email : {{ event.planner.email }} </div>
+
+        <a href="{{ path('main_home') }}">
+            <button type="button" class="login-button">Retour</button>
+        </a>
 
 
     </div>

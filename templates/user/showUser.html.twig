@@ -5,14 +5,22 @@
 {% endblock %}
 
 {% block body %}
-    <div>
-    <h2>{{ user.name }}</h2>
-            <div>name:{{ user.name }}</div>
-            <div> FirstName : {{ user.firstName }} </div>
-            <div> phone:{{ user.phone }} </div>
-            <div>email:{{ user.email }} </div>
-            <a href=javascript:history.go(-3)>Back</a>
+    <div class="container">
 
+        {# TODO : affichage si photo #}
+        {% if user.picture is not null %}
+            <img src="{{ asset('img/users/') ~ user.picture }}" alt="user picture">
+        {% endif %}
+
+        <h2>{{ user.username }}</h2>
+        <div> Nom : {{ user.name }} </div>
+        <div> Prénom : {{ user.firstName }} </div>
+        <div> Téléphone : {{ user.phone }} </div>
+        <div> Email : {{ user.email }} </div>
+
+        <a href="{{ path('main_home') }}">
+            <button type="button" class="login-button">Retour</button>
+        </a>
         </div>
 {% endblock %}
 
