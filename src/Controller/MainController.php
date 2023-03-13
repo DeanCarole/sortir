@@ -36,7 +36,6 @@ class MainController extends AbstractController
 
         // verifie si deja inscrit
         if ($user->isRegister($event)) {
-
             $user->removeEvent($event);
             $event->removeUser($user);
         } else {

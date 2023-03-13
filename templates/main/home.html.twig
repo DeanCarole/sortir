@@ -28,9 +28,9 @@
             <td>{{ event.name }}</td>
           <td>{{ event.startDateTime | date("d/m/Y à H:i")}}</td>
             <td>{{  event.registrationDeadline | date("d/m/Y")}}</td>
-        <td>   /  {{ event.nbRegistrationMax}}</td>
+        <td>{{ event.user | length }} / {{ event.nbRegistrationMax}}</td>
           <td>{{ event.state.label }}</td>
-            <td>{% for user in event.user %} X {% endfor %}</td>
+            <td>{% if app.user and app.user.isRegister(event) %} X {% else %} {% endif %}</td>
            <td><a href="{{ path('user_show', {'id' : event.id})}}">{{ event.planner.name }} {{ event.planner.firstName | slice(0,1)}}.</a> </td>
            <td><a href="{{ path('event_show', {'id' : event.id}) }}">Afficher</a> -
                {% if app.user and app.user.isRegister(event) %}
