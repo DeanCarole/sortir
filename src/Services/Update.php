@@ -33,7 +33,7 @@ class Update
     foreach ($events as $event) {
 
 
-
+//coucou
         //récupère le statut de l'évènement
         $status = $event->getState()->getLabel();
         
