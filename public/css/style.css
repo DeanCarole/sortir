@@ -51,6 +51,7 @@ th {
     font-weight: bold;
     text-transform: uppercase;
 }
+
 /* -------- Image profil user -------- */
 img {
     max-width: 15%;
@@ -58,6 +59,7 @@ img {
     border: 5px solid #009688;
     border-radius: 5px;
 }
+
 /* -------- Bouton connexion (page d'accueil logout) -------- */
 .login-button {
     font-size: 1.2rem;
@@ -121,6 +123,7 @@ img {
 .login-button.green {
     background: linear-gradient(to right, #26a69a, #009688);
 }
+
 /* -------- Navbar -------- */
 nav ul {
     display: flex;
@@ -131,6 +134,7 @@ nav ul {
 nav li {
     margin-right: 1rem; /*pourcentage de taille en fonction du zoom 1 rem = 10px pour zoom = 100%*/
 }
+
 /* -------- Design message d'erreur si login ou password erroné -------- */
 .error-login-message {
     border: 2px solid #FF4D4D;
@@ -176,14 +180,12 @@ ul {
 }
 
 /*-------------------------Formulaire créer une sortie ------------------------------------------------*/
-
-
 .container {
     max-width: 1500px;
     margin: auto;
     padding: 5px;
-
 }
+
 label {
     display: block;
 }
@@ -206,12 +208,12 @@ textarea{
 
 /*-------------------------------------Footer--------------------------------------------*/
 
-footer {
-    padding: 10px 20px;
-    background: #666;
-    color: white;
-}
+/*footer {*/
+/*    padding: 10px 20px;*/
+/*    background: #666;*/
+/*    color: white;*/
+/*}*/
 
-main{
-    height: 80vh;
-}
+/*main{*/
+/*    height: 80vh;*/
+/*}*/
