@@ -1,6 +1,7 @@
 body{
     font-family: 'Source Sans Pro', sans-serif;
     color: midnightblue;
+    font-size: large;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -14,18 +15,24 @@ a:hover {
 
 /* -------- Alignement filtres haut de page d'accueil -------- */
 .container-filter {
+    margin: auto;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     width: 80%;
+    min-width: 1200px;
 }
 
+#createEvent{
+    margin-left: 10%;
+}
 
 /* -------- Tableau des sorties de la page d'accueil home -------- */
 .tableau {
+    margin: auto;
     min-height: 500px;
     height: 500px; /* pour permettre une hauteur variable en fonction du contenu */
     min-width: 1200px;
-    width: 1200px; /* pour permettre une largeur variable en fonction du contenu */
+    width: 80%; /* pour permettre une largeur variable en fonction du contenu */
     overflow: auto; /* pour activer la scrollbar */
     border: 5px solid #009688;
     border-radius: 5px;
@@ -216,12 +223,12 @@ textarea{
 
 /*-------------------------------------Footer--------------------------------------------*/
 
-/*footer {*/
-/*    padding: 10px 20px;*/
-/*    background: #666;*/
-/*    color: white;*/
-/*}*/
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    text-align: center;
+}
 
-/*main{*/
-/*    height: 80vh;*/
-/*}*/
