@@ -7,10 +7,11 @@
     <h2>Filtrer les sorties</h2>
 
     <div class="container-filter">
-       {#  {{ form_start(filterForm) }}
-        {{ form_errors(filterForm) }}#}
+
         {# div.flexsur3colonnes #}
         <div class="filter-item">
+            {{ form_start(filterForm) }}
+            {{ form_errors(filterForm) }}
             {{ form_row(filterForm.campus) }}
             {{ form_row(filterForm.name) }}
             {{ form_row(filterForm.startDate) }}
@@ -24,7 +25,6 @@
         </div>
         <div class="filter-item">
             <button class="login-button green">Rechercher</button>
-
         </div>
         {{ form_end(filterForm) }}
     </div>

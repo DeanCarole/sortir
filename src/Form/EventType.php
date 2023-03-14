@@ -48,10 +48,7 @@ class EventType extends AbstractType
             ->add ('place', EntityType::class, ['class' => Place::class,
                 'choice_label' => 'name',
                 'label' => 'Lieu : '
-            ])
-            ->add('Rechercher !!', type: SubmitType::class)
-
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

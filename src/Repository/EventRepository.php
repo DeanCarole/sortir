@@ -129,25 +129,30 @@ class EventRepository extends ServiceEntityRepository
                 ->setParameter('to', $to);
         }
 
+        //Filtre sur les sorties que j'organise
+        if($filter->getEventsPlanned()){
+            $qb->andWhere('e.planner = :userPlanner')
+                ->setParameter('userPlanner', $user);
+        }
+
+        //Filtre sur les sorties auxquelles je suis inscrit(e)
+        if($filter->getEventsRegistered()){
+            $qb->andWhere(':userRegistered MEMBER OF e.user')
+                ->setParameter('userRegistered', $user);
+        }
+
+        //Filtre sur les sorties auxquelles je ne suis pas inscrit(e)
+        if($filter->getEventsNotRegistered()){
+            $qb->andWhere(':user NOT MEMBER OF e.user')
+                ->setParameter('user', $user);
+        }
+
         //Filtre sur les sorties passées
         if($filter->getEventsPassed()){
             $today = new \DateTime();
             $qb->andWhere('e.startDateTime < :today')
                 ->setParameter('today', $today);
         }
-
-
-
-//        if($filter->getEventsRegistered()){
-//            $qb->andWhere('e.user.')
-//
-//        }
-
-
-
-
-
-
 
         //Renvoie une instance de Query
         $query = $qb->getQuery();
