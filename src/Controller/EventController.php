@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Event;
 use App\Form\EventType;
-use App\Form\WishType;
 use App\Repository\EventRepository;
 use App\Repository\PlaceRepository;
 use App\Repository\StateRepository;
