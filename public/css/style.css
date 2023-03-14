@@ -12,6 +12,14 @@ a:hover {
     color: saddlebrown;
 }
 
+/* -------- Alignement filtres haut de page d'accueil -------- */
+.container-filter {
+    display: flex;
+    justify-content: space-evenly;
+    width: 80%;
+}
+
+
 /* -------- Tableau des sorties de la page d'accueil home -------- */
 .tableau {
     min-height: 500px;
@@ -186,17 +194,17 @@ ul {
     padding: 5px;
 }
 
-label {
-    display: block;
-}
+/*label {*/
+/*    display: block;*/
+/*}*/
 
-input,
-select {
-    margin-bottom: 1rem;
-    box-sizing: border-box;
-    width: 200px;
-    max-width: 50%;
-}
+/*input,*/
+/*select {*/
+/*    margin-bottom: 1rem;*/
+/*    box-sizing: border-box;*/
+/*    width: 200px;*/
+/*    max-width: 50%;*/
+/*}*/
 
 textarea{
     margin-bottom: 1rem;

@@ -4,10 +4,28 @@
 
 {% block body %}
 
-    <div class="container">
-        {{ form_start(filterForm) }}
-        {{ form_widget(filterForm) }}
-        <button class="login-button green">Rechercher</button>
+    <h2>Filtrer les sorties</h2>
+
+    <div class="container-filter">
+       {#  {{ form_start(filterForm) }}
+        {{ form_errors(filterForm) }}#}
+        {# div.flexsur3colonnes #}
+        <div class="filter-item">
+            {{ form_row(filterForm.campus) }}
+            {{ form_row(filterForm.name) }}
+            {{ form_row(filterForm.startDate) }}
+            {{ form_row(filterForm.endDate) }}
+        </div>
+        <div class="filter-item">
+            {{ form_row(filterForm.eventsPlanned) }}
+            {{ form_row(filterForm.eventsRegistered) }}
+            {{ form_row(filterForm.eventsNotRegistered) }}
+            {{ form_row(filterForm.eventsPassed) }}
+        </div>
+        <div class="filter-item">
+            <button class="login-button green">Rechercher</button>
+
+        </div>
         {{ form_end(filterForm) }}
     </div>
 
@@ -30,7 +48,7 @@
     {% for event in events %}
 
         <tr>
-            <td>{{ event.name }}</td>
+            <td>{{event.name }}</td>
           <td>{{ event.startDateTime | date("d/m/Y à H:i")}}</td>
             <td>{{  event.registrationDeadline | date("d/m/Y")}}</td>
         <td>{{ event.user | length }} / {{ event.nbRegistrationMax}}</td>
@@ -53,6 +71,7 @@
     </table>
 </div>
 
+    <br>
     <a href="{{ path('event_add') }}"><button type="button" class="login-button green">Créer une sortie</button></a>
 
 

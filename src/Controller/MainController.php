@@ -4,6 +4,7 @@ namespace App\Controller;
 
 
 
+use App\Form\Filter\Filter;
 use App\Form\FilterType;
 use App\Repository\EventRepository;
 use App\Repository\UserRepository;
@@ -22,13 +23,16 @@ class MainController extends AbstractController
         $user = $this->getUser();
         $update->updateState();
 
-
         //Liste l'ensemble des sorties
-        $events = $eventRepository->findAllEvents();
+
+        $filtre = new Filter();
 
         //Création fomrulaire des filtres
-        $filterForm = $this->createForm(FilterType::class);
-        //$filterForm->handleRequest($request);
+        $filterForm = $this->createForm(FilterType::class, $filtre);
+        $filterForm->handleRequest($request);
+        $events = $eventRepository->findAllEventsFilter($filtre, $user);
+
+
 
         return $this->render('main/home.html.twig', [
             'events'=>$events ,

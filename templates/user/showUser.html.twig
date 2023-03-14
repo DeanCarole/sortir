@@ -7,7 +7,6 @@
 {% block body %}
     <div class="container">
 
-        {# TODO : affichage si photo #}
         {% if user.picture is not null %}
             <img src="{{ asset('img/users/') ~ user.picture }}" alt="user picture">
             {% else %}

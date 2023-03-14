@@ -25,9 +25,11 @@ class FilterType extends AbstractType
                 'label' => 'Le nom de la sortie contient : '
             ])
             ->add('startDate', DateType::class, [
+                'widget' => 'single_text',
                 'label' => "Entre "
             ])
             ->add('endDate', DateType::class, [
+                'widget' => 'single_text',
                 'label' => "et "
             ])
             ->add('eventsPlanned', CheckboxType::class, [

@@ -27,20 +27,18 @@ class Update
     //modifier statut d'un évènement suivant la date de début de la sortie
 
     //récupère toutes les sorties avec le repository
-    $events = $this->eventRepository->findAllEvents();
+    $events = $this->eventRepository->findAllEventsUpdate();
 
     //boucle sur chaque évènement
     foreach ($events as $event) {
 
-
-//coucou
         //récupère le statut de l'évènement
         $status = $event->getState()->getLabel();
         
        $event1 = clone $event->getStartDateTime();
        $event1->modify("+" .$event->getDuration() . "minute");
 
-       if($event->getId() == 51){
+       if($event->getId() == 1){
            dump($event);
        }
 
@@ -62,7 +60,7 @@ class Update
             $event->setState($state);
         }
 
-        if($event->getId() == 51){
+        if($event->getId() == 1){
             dump($event);
         }
            // $this->eventRepository->save($event, true);
