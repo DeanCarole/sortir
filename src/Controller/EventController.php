@@ -90,16 +90,29 @@ class EventController extends AbstractController
     }
 
     #[Route('/{id}/delete', name: 'deleteEvent', requirements: ['id' => '\d+'])]
-    public function deleteEvent(int $id, EventRepository $eventRepository): Response
+    public function deleteEvent(int $id, EventRepository $eventRepository, Request $request): Response
     {
         //Récupération d'un event par son id
         $event = $eventRepository->find($id);
 
-        if(!$event){
-            //Lance une erreur 404 si l'utilisateur n'existe pas
-            throw $this->createNotFoundException("Oups ! Cette sortie n'existe pas !");
-        }
         $eventForm = $this->createForm(EventType::class, $event);
+        $eventForm->handleRequest($request);
+
+        if ($eventForm->isSubmitted() && $eventForm->isValid()) {
+            $event = $eventForm->getData();
+            $eventData = $eventForm->get('eventData')->getData();
+            if ($eventData) {
+
+                $event->setEventData();
+            }
+
+            $eventRepository->save($event,true);
+            $this->addFlash('success',"Sortie annulée !");
+
+            // rediriger l'utilisateur vers une autre page
+            return $this->redirectToRoute('main_home');
+        }
+
         return $this->render('event/deleteEvent.html.twig', [
             'event' => $event, 'eventForm' => $eventForm->createView()
         ]);

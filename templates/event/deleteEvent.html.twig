@@ -40,12 +40,16 @@
             <li>Campus : {{ event.campus.name }}</li>
             <li>Lieu : {{ event.place.name }}</li>
         </ul>
-        {{ form_row(eventForm.eventData) }}
+
+        <div>
+            {{ form_row(eventForm.eventData) }}
+            <a href="{{ path('main_home') }}"><button type="submit" class="login-button green">Enregistrer</button></a>
 
 
-        <a href="{{ path('main_home') }}">
-            <button type="submit" class="login-button">Annuler</button>
-        </a>
+            <a href="{{ path('main_home') }}"><button type="button" class="login-button">Annuler</button></a>
+
+        </div>
+
 
     </div>
 

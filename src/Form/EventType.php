@@ -36,6 +36,7 @@ class EventType extends AbstractType
                 'label' => 'Durée : '
             ])
             ->add('eventData', TextareaType::class, [
+                'mapped' => false,
                 'label' => 'Description et infos : '
             ])
             ->add('campus', EntityType::class, ['class' => Campus::class,
