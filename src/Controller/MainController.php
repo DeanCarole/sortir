@@ -41,21 +41,51 @@ class MainController extends AbstractController
     }
 
 
-    #[Route('/home/{id}', name: 'main_addUserEvent', requirements: ['id' => '\d+'])]
-    public function addUserEvent(int $id, EventRepository $eventRepository, UserRepository $userRepository): Response
+//    #[Route('/home/{id}', name: 'main_addUserEvent', requirements: ['id' => '\d+'])]
+//    public function addUserEvent(int $id, EventRepository $eventRepository, UserRepository $userRepository): Response
+//    {
+//        $event = $eventRepository->find($id);
+//        $user = $this->getUser();
+//
+//        // verifie si deja inscrit
+//        if ($user->isRegister($event)) {
+//            $user->removeEvent($event);
+//            $event->removeUser($user);
+//        } else {
+//            // Si pas encore inscrit
+//            $user->addEvent($event);
+//            $users = $event->getUser();
+//            $event->addUser($user);
+//        }
+//
+//        $userRepository->save($user, true);
+//        $eventRepository->save($event, true);
+//
+//        return $this->render('event/show.html.twig', [
+//            'users' => $event->getUser(), 'event' => $event
+//        ]);
+//    }
+#[Route('/home/{id}', name: 'main_addUserEvent', requirements: ['id' => '\d+'])]
+   public function addUserEvent(int $id, EventRepository $eventRepository, UserRepository $userRepository): Response
     {
         $event = $eventRepository->find($id);
         $user = $this->getUser();
 
-        // verifie si deja inscrit
+        // Vérifie si déjà inscrit
         if ($user->isRegister($event)) {
             $user->removeEvent($event);
             $event->removeUser($user);
         } else {
-            // Si pas encore inscrit
-            $user->addEvent($event);
-            $users = $event->getUser();
-            $event->addUser($user);
+            // Si pas encore inscrit, vérifie le nombre maximal d'inscriptions
+            $maxRegistrations = $event->getNbRegistrationMax();
+            if ($maxRegistrations && count($event->getUser()) >= $maxRegistrations) {
+                // Le nombre maximal d'inscriptions a été atteint
+                $this->addFlash('success',"Sortie complète !");
+            } else {
+                $user->addEvent($event);
+                $users = $event->getUser();
+                $event->addUser($user);
+            }
         }
 
         $userRepository->save($user, true);
@@ -66,25 +96,5 @@ class MainController extends AbstractController
         ]);
     }
 
-//    #[Route('/home/{id}', name: 'main_addUserEvent', requirements: ['id' => '\d+'])]
-//    public function addUserEvent(int $id, EventRepository $eventRepository, UserRepository $userRepository): Response
-//    {
-//        $event = $eventRepository->find($id);
-//
-//
-//        $user = $this->getUser();
-//        $user->addEvent($event);
-//        $users = $event->getUser();
-//        $event->addUser($user);
-//
-//        $userRepository->save($user,true);
-//        $eventRepository->save($event, true);
-//
-//
-//
-//        return $this->render('event/show.html.twig', [
-//            'users' => $users, 'event' => $event
-//        ]);
-//    }
 }
 

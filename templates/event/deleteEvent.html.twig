@@ -6,32 +6,46 @@
 
     <h1>Annuler une sortie</h1>
     <div class="container">
-        {{ form_start(eventForm) }}
+        {% set trans_day_hash = {
+            'Monday': 'Lundi',
+            'Tuesday': 'Mardi',
+            'Wednesday': 'Mercredi',
+            'Thursday': 'Jeudi',
+            'Friday': 'Vendredi',
+            'Saturday': 'Samedi',
+            'Sunday': 'Dimanche'
+        } %}
 
-        {{ form_row(eventForm.name) }}
-        {{ form_row(eventForm.startDateTime) }}
-        {{ form_row(eventForm.registrationDeadline) }}
-        {{ form_row(eventForm.nbRegistrationMax) }}
-        {{ form_row(eventForm.duration) }}
+        {# Table de conversion des mois en français => utilisé plus bas #}
+        {% set trans_month_hash = {
+            'Jan': 'Janvier',
+            'Feb': 'Février',
+            'Mar': 'Mars',
+            'Apr': 'Avril',
+            'May': 'Mai',
+            'Jun': 'Juin',
+            'Jul': 'Juillet',
+            'Aug': 'Août',
+            'Sep': 'Septembre',
+            'Oct': 'Octobre',
+            'Nov': 'Novembre',
+            'Dec': 'Décembre'
+        } %}
+        <ul>
+            <li>Nom de la sortie : {{ event.name }}</li>
+            <li>Date et heure de la sortie : {{ trans_day_hash[event.startDateTime | date('l')] }}
+                {{ event.startDateTime | date('d') }}
+                {{ trans_month_hash[event.startDateTime | date('M')] }}
+                {{ event.startDateTime | date('Y à H:i') }}</li>
+            <li>Campus : {{ event.campus.name }}</li>
+            <li>Lieu : {{ event.place.name }}</li>
+        </ul>
         {{ form_row(eventForm.eventData) }}
-        {{ form_row(eventForm.campus) }}
-        {{ form_row(eventForm.place) }}
-
-        <label for="street">Rue : </label>
-        <input type="text" name="street">
-        <label for="zipCode">Code postal : </label>
-        <input type="text" name="zipCode">
-        <label for="latitude">Latitude : </label>
-        <input type="text" name="latitude">
-        <label for="longitude">Longitude : </label>
-        <input type="text" name="longitude">
-
-        <a href="{{ path('main_home') }}"><button type="submit" class="login-button">Annuler</button></a>
-        {{ form_end(eventForm) }}
 
 
-
-
+        <a href="{{ path('main_home') }}">
+            <button type="submit" class="login-button">Annuler</button>
+        </a>
 
     </div>
 
