@@ -46,36 +46,58 @@
         </tr>
         </thead>
         <tbody>
-
     {% for event in events %}
+            <tr>
+                <td>{{event.name }}</td>
+                <td>{{ event.startDateTime | date("d/m/Y à H:i")}}</td>
+                <td>{{  event.registrationDeadline | date("d/m/Y")}}</td>
+                <td>{{ event.user | length }} / {{ event.nbRegistrationMax}}</td>
+{#                <td>{{ event.state.label }}</td>#}
+                {% set state = event.state.label %}
+                {% if state == 'created' %}
+                    <td>En création</td>
+                {% endif %}
+                {% if state == 'open' %}
+                    <td>Ouverte</td>
+                {% endif %}
+                {% if state == 'closed' %}
+                    <td>Fermée</td>
+                {% endif %}
+                {% if state == 'inProgress' %}
+                    <td>Sortie en cours</td>
+                {% endif %}
+                {% if state == 'finished' %}
+                    <td>Terminée</td>
+                {% endif %}
+                {% if state == 'canceled' %}
+                    <td>Annulée</td>
+                {% endif %}
+                {% if state == 'archived' %}
+                    <td>Archivée</td>
+                {% endif %}
+{#                <td>{{ event.state.label }}</td>#}
+                <td>{% if app.user and app.user.isRegister(event) %} X {% else %} {% endif %}</td>
+                <td><a href="{{ path('user_show', {'id' : event.id})}}">{{ event.planner.name }} {{ event.planner.firstName | slice(0,1)}}.</a></td>
+                <td><a href="{{ path('event_show', {'id' : event.id}) }}">Afficher</a> -
 
-        <tr>
-            <td>{{event.name }}</td>
-          <td>{{ event.startDateTime | date("d/m/Y à H:i")}}</td>
-            <td>{{  event.registrationDeadline | date("d/m/Y")}}</td>
-        <td>{{ event.user | length }} / {{ event.nbRegistrationMax}}</td>
-          <td>{{ event.state.label }}</td>
-            <td>{% if app.user and app.user.isRegister(event) %} X {% else %} {% endif %}</td>
-           <td><a href="{{ path('user_show', {'id' : event.id})}}">{{ event.planner.name }} {{ event.planner.firstName | slice(0,1)}}.</a> </td>
-           <td><a href="{{ path('event_show', {'id' : event.id}) }}">Afficher</a> - <a href="{{ path('event_updateEvent', {'id': event.id}) }}">Modifier</a> - <a href="{{ path('event_deleteEvent', {'id': event.id}) }}">Annuler</a> -
-               {% if app.user and app.user.isRegister(event) %}
-                   <a href="{{ path('main_addUserEvent', {'id': event.id}) }}">Se désinscrire</a>
-               {% else %}
-                   <a href="{{ path('main_addUserEvent', {'id': event.id}) }}">S'inscrire</a>
-               {% endif %}
+                    {% if event.getPlanner() == user %}
+                        <a href="{{ path('event_updateEvent', {'id': event.id}) }}">Modifier</a> - <a href="{{ path('event_deleteEvent', {'id': event.id}) }}">Annuler</a>
+                    {% endif %}
 
-
-                  </td>
-
+                    {% if event.getPlanner() != user %}
+                        {% if app.user and app.user.isRegister(event) %}
+                            <a href="{{ path('main_addUserEvent', {'id': event.id}) }}">Se désinscrire</a>
+                        {% else %}
+                            <a href="{{ path('main_addUserEvent', {'id': event.id}) }}">S'inscrire</a>
+                        {% endif %}
+                    {% endif %}
+                </td>
     {% endfor %}
-
         </tbody>
     </table>
 </div>
 
     <br>
     <a href="{{ path('event_add') }}"><button type="button" class="login-button green" id="createEvent">Créer une sortie</button></a>
-
-
 
 {% endblock %}

@@ -32,14 +32,11 @@ class MainController extends AbstractController
         $filterForm->handleRequest($request);
         $events = $eventRepository->findAllEventsFilter($filtre, $user);
 
-
-
         return $this->render('main/home.html.twig', [
-            'events'=>$events ,
+            'events'=>$events,
             'user'=>$user,
             'filterForm' => $filterForm->createView()]);
     }
-
 
 //    #[Route('/home/{id}', name: 'main_addUserEvent', requirements: ['id' => '\d+'])]
 //    public function addUserEvent(int $id, EventRepository $eventRepository, UserRepository $userRepository): Response

@@ -8,9 +8,9 @@
     <div class="container">
 
         {% if user.picture is not null %}
-            <img src="{{ asset('img/users/') ~ user.picture }}" alt="user picture">
+            <img class="imgUser" src="{{ asset('img/users/') ~ user.picture }}" alt="user picture">
             {% else %}
-                <img src="{{ asset('img/users/profil.png') }}" alt="user picture default">
+                <img class="imgUser" src="{{ asset('img/users/profil.png') }}" alt="user picture default">
         {% endif %}
 
         <h2>{{ user.username }}</h2>

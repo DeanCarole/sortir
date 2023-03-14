@@ -27,6 +27,7 @@ class EventController extends AbstractController
 
         $user = $this->getUser();
         $event->setPlanner($user);
+        $event->addUser($user);
 
         $eventForm = $this->createForm(EventType::class, $event);
         $eventForm->handleRequest($request);
@@ -35,10 +36,8 @@ class EventController extends AbstractController
             // récupérer les données du formulaire
             $event = $eventForm->getData();
 
-
             $eventRepository->save($event, true);
             $this->addFlash('success', "Sortie créée !");
-
         }
 
         $places = $placeRepository->findAll();

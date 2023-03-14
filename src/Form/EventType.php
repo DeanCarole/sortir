@@ -24,9 +24,11 @@ class EventType extends AbstractType
                 'label' => 'Nom de la sortie : '
             ])
            ->add('startDateTime',  DateTimeType::class, [
+               'widget' => 'single_text',
                'label' => 'Date et heure de la sortie : '
            ])
             ->add('registrationDeadline', DateType::class, [
+                'widget' => 'single_text',
                 'label' => "Date limite d'inscription : "
             ])
             ->add('nbRegistrationMax', TextType::class, [
@@ -41,7 +43,8 @@ class EventType extends AbstractType
             ])
             ->add('campus', EntityType::class, ['class' => Campus::class,
                 'choice_label' => 'name',
-                'label' => 'Campus : '
+                'label' => 'Campus : ',
+                'placeholder' => 'user.campus.label'
             ])
             ->add ('place', EntityType::class, ['class' => Place::class,
                 'choice_label' => 'name',
