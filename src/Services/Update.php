@@ -40,7 +40,7 @@ class Update
        $event1 = clone $event->getStartDateTime();
        $event1->modify("+" .$event->getDuration() . "minute");
 
-       if($event->getId() == 1){
+       if($event->getId() == 51){
            dump($event);
        }
 
@@ -62,7 +62,7 @@ class Update
             $event->setState($state);
         }
 
-        if($event->getId() == 1){
+        if($event->getId() == 51){
             dump($event);
         }
            // $this->eventRepository->save($event, true);

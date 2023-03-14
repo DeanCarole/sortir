@@ -68,9 +68,6 @@
     <div class="event-block-users">
         <h2>Liste des participants inscrits :</h2>
 
-        <h3 style="color: darkred"> >> TODO: faire remonter la liste des users inscrits à la sortie dans une boucle
-            d'affichage des tr/td << </h3>
-
         <table>
             <thead>
 
@@ -80,7 +77,7 @@
             </tr>
             </thead>
             <tbody>
-            {# TODO : faire remonter la liste des users inscrits à la sortie dans une boucle d'affichage des tr/td #}
+
             {% for user in event.user %}
             <tr>
                 <td> <a href="{{ path('user_showuserevent', {'id' : user.id})}}"> {{ user.username }}</a></td>

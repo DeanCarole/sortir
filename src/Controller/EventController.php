@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Event;
 use App\Form\EventType;
+use App\Form\WishType;
 use App\Repository\EventRepository;
 use App\Repository\PlaceRepository;
 use App\Repository\StateRepository;
@@ -65,6 +66,45 @@ class EventController extends AbstractController
         ]);
     }
 
+    #[Route('/{id}/update', name: 'updateEvent', requirements: ['id' => '\d+'])]
+    public function updateEvent(int $id, EventRepository $eventRepository, Request $request): Response
+    {
+        //Récupération d'un event par son id
+        $event = $eventRepository->find($id);
+
+        $eventForm = $this->createForm(EventType::class, $event);
+        $eventForm->handleRequest($request);
+
+        if ($eventForm->isSubmitted() && $eventForm->isValid()) {
+            $event = $eventForm->getData();
+
+            $eventRepository->save($event,true);
+            $this->addFlash('success',"Sortie modifiée !");
+
+            // rediriger l'utilisateur vers une autre page
+            return $this->redirectToRoute('main_home');
+        }
+
+        return $this->render('event/updateEvent.html.twig', [
+            'event' => $event, 'eventForm' => $eventForm->createView()
+        ]);
+    }
+
+    #[Route('/{id}/delete', name: 'deleteEvent', requirements: ['id' => '\d+'])]
+    public function deleteEvent(int $id, EventRepository $eventRepository): Response
+    {
+        //Récupération d'un event par son id
+        $event = $eventRepository->find($id);
+
+        if(!$event){
+            //Lance une erreur 404 si l'utilisateur n'existe pas
+            throw $this->createNotFoundException("Oups ! Cette sortie n'existe pas !");
+        }
+        $eventForm = $this->createForm(EventType::class, $event);
+        return $this->render('event/deleteEvent.html.twig', [
+            'event' => $event, 'eventForm' => $eventForm->createView()
+        ]);
+    }
 
 
 

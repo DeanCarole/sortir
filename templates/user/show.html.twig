@@ -4,9 +4,12 @@
     <div class="container">
 
 
-            <img src="{{ asset('img/users/') ~ event.planner.picture }}" alt="user picture">
-
-
+        {# TODO : affichage si photo #}
+        {% if user.picture is not null %}
+            <img src="{{ asset('img/users/') ~ user.picture }}" alt="user picture">
+        {% else %}
+            <img src="{{ asset('img/users/profil.png') }}" alt="user picture default">
+        {% endif %}
 
 
         <h2>{{ event.planner.username }}</h2>
@@ -14,7 +17,7 @@
         <div> Prénom : {{ event.planner.firstName }} </div>
         <div> Téléphone : {{ event.planner.phone }} </div>
         <div> Email : {{ event.planner.email }} </div>
-
+        <div> Campus : {{ event.campus.name }} </div>
         <a href="{{ path('main_home') }}">
             <button type="button" class="login-button">Retour</button>
         </a>

@@ -10,6 +10,8 @@
         {# TODO : affichage si photo #}
         {% if user.picture is not null %}
             <img src="{{ asset('img/users/') ~ user.picture }}" alt="user picture">
+            {% else %}
+                <img src="{{ asset('img/users/profil.png') }}" alt="user picture default">
         {% endif %}
 
         <h2>{{ user.username }}</h2>
@@ -17,7 +19,7 @@
         <div> Prénom : {{ user.firstName }} </div>
         <div> Téléphone : {{ user.phone }} </div>
         <div> Email : {{ user.email }} </div>
-
+        <div> Campus : {{ user.campus.name }} </div>
         <a href="{{ path('main_home') }}">
             <button type="button" class="login-button">Retour</button>
         </a>
