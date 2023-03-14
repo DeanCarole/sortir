@@ -41,14 +41,13 @@
             <li>Lieu : {{ event.place.name }}</li>
         </ul>
 
-        <div>
+
             {{ form_row(eventForm.eventData) }}
+
+
             <a href="{{ path('main_home') }}"><button type="submit" class="login-button green">Enregistrer</button></a>
-
-
             <a href="{{ path('main_home') }}"><button type="button" class="login-button">Annuler</button></a>
 
-        </div>
 
 
     </div>

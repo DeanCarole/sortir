@@ -6,11 +6,13 @@
 
 {% block body %}
 <div class="container">
-    <h2>Update Profil</h2>
+    <h2>Modifier Profil</h2>
 
     {# TODO : affichage si photo #}
     {% if user.picture is not null %}
         <img src="{{ asset('img/users/') ~ user.picture }}" alt="user picture">
+    {% else %}
+        <img src="{{ asset('img/users/profil.png') }}" alt="user picture default">
     {% endif %}
 
     {{ form_start(userForm) }}

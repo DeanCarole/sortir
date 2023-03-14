@@ -70,15 +70,17 @@ class UserController extends AbstractController
              * @var UploadedFile $file
              */
             $file = $userForm->get('picture')->getData();
+            if ($file){
+                //Appel de la méthode upload de notre service Uploader
+                $newFileName = $uploader->upload(
+                    $file,
+                    $this->getParameter('upload_user_picture'),
+                    $user->getUserIdentifier());
 
-            //Appel de la méthode upload de notre service Uploader
-            $newFileName = $uploader->upload(
-                $file,
-                $this->getParameter('upload_user_picture'),
-                $user->getUserIdentifier());
+                //Sette le nouveau nom du
+                $user->setPicture($newFileName);
 
-            //Sette le nouveau nom du
-            $user->setPicture($newFileName);
+            }
 
             $userRepository->save($user,true);
             $this->addFlash('success',"Profil modifié !");
