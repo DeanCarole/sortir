@@ -6,6 +6,7 @@ use App\Repository\PlaceRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: PlaceRepository::class)]
 class Place
@@ -16,9 +17,23 @@ class Place
     private ?int $id = null;
 
     #[ORM\Column(length: 50)]
+    #[Assert\NotBlank]
+    #[Assert\Length(
+        min: 2,
+        max: 50,
+        minMessage: 'Le nom du lieu est trop petit. Il doit avoir minimum {{ limit }} caractères',
+        maxMessage: 'Le nom du lieu est trop grand. Il doit avoir maximum {{ limit }} caractères',
+    )]
     private ?string $name = null;
 
     #[ORM\Column(length: 50)]
+    #[Assert\NotBlank]
+    #[Assert\Length(
+        min: 2,
+        max: 50,
+        minMessage: 'Le nom de la rue est trop petit. Il doit avoir minimum {{ limit }} caractères',
+        maxMessage: 'Le nom de la rue est trop grand. Il doit avoir maximum {{ limit }} caractères',
+    )]
     private ?string $street = null;
 
     #[ORM\Column(nullable: true)]

@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 
 #[ORM\Entity(repositoryClass: EventRepository::class)]
@@ -18,19 +19,38 @@ class Event
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Assert\NotBlank]
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Length(
+        min: 2,
+        max: 255,
+        minMessage: 'Le nom de ta sortie est trop petit. Elle doit avoir minimum {{ limit }} caractères',
+        maxMessage: 'Le nom de ta sortie est trop grand. Elle doit avoir maximum {{ limit }} caractères',
+    )]
     private ?string $name = null;
 
+
+
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[Assert\NotBlank]
+    #[Assert\GreaterThanOrEqual("today", message: "La date de début doit être ultérieure à aujourd'hui.")]
     private ?\DateTimeInterface $startDateTime = null;
 
-    #[ORM\Column]
-    private ?int $duration = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[Assert\NotBlank]
+    #[Assert\LessThan(propertyPath: "startDateTime", message: "La date limite d'inscription doit être antérieure à la date de la sortie.")]
     private ?\DateTimeInterface $registrationDeadline = null;
 
+
     #[ORM\Column]
+    #[Assert\NotBlank]
+    private ?int $duration = null;
+
+
+    #[ORM\Column]
+    #[Assert\NotBlank]
     private ?int $nbRegistrationMax = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]

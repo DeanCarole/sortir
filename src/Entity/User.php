@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[UniqueEntity(fields: ['username'], message: 'This username is already in use')]
@@ -20,6 +21,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?int $id = null;
 
     #[ORM\Column(length: 180, unique: true)]
+    #[Assert\NotBlank]
+    #[Assert\Length(
+        min: 2,
+        max: 180,
+        minMessage: "Ton nom d'utilisateur est trop petit. Il doit avoir minimum {{ limit }} caractères",
+        maxMessage: "Ton nom d'utilisateur est trop grand. Il doit avoir maximum {{ limit }} caractères",
+    )]
     private ?string $username = null;
 
     #[ORM\Column]
@@ -29,18 +37,56 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @var string The hashed password
      */
     #[ORM\Column]
+    #[Assert\NotBlank]
+    #[Assert\Length(
+        min: 2,
+        max: 255,
+        minMessage: "Ton mot de passe est trop petit. Il doit avoir minimum {{ limit }} caractères",
+        maxMessage: "Ton mot de passe est trop grand. Il doit avoir maximum {{ limit }} caractères",
+    )]
     private ?string $password = null;
 
     #[ORM\Column(length: 50)]
+    #[Assert\NotBlank]
+    #[Assert\Length(
+        min: 2,
+        max: 50,
+        minMessage: "Ton nom est trop petit. Il doit avoir minimum {{ limit }} caractères",
+        maxMessage: "Ton nom est trop grand. Il doit avoir maximum {{ limit }} caractères",
+    )]
     private ?string $name = null;
 
     #[ORM\Column(length: 50)]
+    #[Assert\NotBlank]
+    #[Assert\Length(
+        min: 2,
+        max: 50,
+        minMessage: "Ton prénom est trop petit. Il doit avoir minimum {{ limit }} caractères",
+        maxMessage: "Ton prénom est trop grand. Il doit avoir maximum {{ limit }} caractères",
+    )]
     private ?string $firstName = null;
 
     #[ORM\Column(length: 10)]
+    #[Assert\NotBlank]
+    #[Assert\Length(
+        min: 10,
+        max: 10,
+        minMessage: "Ton numéro de téléphone est trop petit. Il doit avoir minimum {{ limit }} caractères",
+        maxMessage: "Ton numéro de téléphone est trop grand. Il doit avoir maximum {{ limit }} caractères",
+    )]
     private ?string $phone = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Length(
+        min: 2,
+        max: 255,
+        minMessage: "Ton mail est trop petit. Il doit avoir minimum {{ limit }} caractères",
+        maxMessage: "Ton mail est trop grand. Il doit avoir maximum {{ limit }} caractères",
+    )]
+    #[Assert\Email(
+        message: "Ton mail {{ value }} n'a pas un format valide.",
+    )]
     private ?string $email = null;
 
     #[ORM\Column]
@@ -57,6 +103,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?Campus $campus = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\Length(
+        min: 2,
+        max: 255,
+        minMessage: "Ton nom d'image est trop petit. Il doit avoir minimum {{ limit }} caractères",
+        maxMessage: "Ton nom d'image est trop grand. Il doit avoir maximum {{ limit }} caractères",
+    )]
     private ?string $picture = null;
 
     public function __construct()

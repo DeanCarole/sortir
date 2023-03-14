@@ -33,7 +33,7 @@ class EventType extends AbstractType
                 'label' => 'Nombre de places : '
             ])
             ->add('duration', TextType::class, [
-                'label' => 'Durée : '
+                'label' => 'Durée (en minutes): '
             ])
             ->add('eventData', TextareaType::class, [
                 'mapped' => false,
