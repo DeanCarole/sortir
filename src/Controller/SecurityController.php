@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Services\Update;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -10,8 +11,10 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class SecurityController extends AbstractController
 {
     #[Route(path: '/login', name: 'app_login')]
-    public function login(AuthenticationUtils $authenticationUtils): Response
+    public function login(AuthenticationUtils $authenticationUtils, Update $update): Response
     {
+        $update->updateState();
+
         /* Permet de récupérer l'instance de l'user connecté côté back (dans tous les controllers)
         $this->getUser() accessible depuis tous les controllers */
         if ($this->getUser()) {
