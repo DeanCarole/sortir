@@ -1,10 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste des sorties!{% endblock %}
+{% block title %}
+
+    Liste des sorties!
+
+
+{% endblock %}
 
 {% block body %}
 
     <h2>Filtrer les sorties</h2>
+    <h4>{{ user.username }}</h4>
+    <h4>{{ "now"|date("d/m/Y") }}</h4>
 
     <div class="container-filter">
 
@@ -24,6 +31,7 @@
             {{ form_row(filterForm.eventsPassed) }}
         </div>
         <div class="filter-item">
+
             <button class="login-button green">Rechercher</button>
         </div>
         {{ form_end(filterForm) }}

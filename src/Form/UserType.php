@@ -66,7 +66,7 @@ class UserType extends AbstractType
                 //ajouter champs dans dans formulaire qui ne sont pas dans l'entité
                 //path du fichier temporaire
                 'required'=>false,
-                'mapped' =>false, 'label' => 'Image du Profil',
+                'mapped' =>false, 'label' => 'Modifier Image',
                 'constraints' =>[
                     new Image([
                         "maxSize"=>'7000k',
