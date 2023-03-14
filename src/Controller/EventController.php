@@ -64,6 +64,23 @@ class EventController extends AbstractController
         ]);
     }
 
+
+    #[Route('/publish{id}', name: 'publish', requirements: ['id' => '\d+'])]
+    public function publish(int $id, EventRepository $eventRepository, StateRepository $stateRepository): Response
+    {
+
+        //Récupération d'un event par son id
+       $event = $eventRepository->find($id);
+
+        //modifier l'état de la sortie
+        $state = $stateRepository->findOneBy(['label' => 'open']);
+        $event->setState($state);
+        $eventRepository->save($event, true);
+
+        return $this->redirectToRoute('main_home');
+    }
+
+
     #[Route('/{id}/update', name: 'updateEvent', requirements: ['id' => '\d+'])]
     public function updateEvent(int $id, EventRepository $eventRepository, Request $request): Response
     {
