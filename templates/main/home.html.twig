@@ -35,17 +35,10 @@
             </div>
         </div>
         <div class="filter-item">
-            {{ form_widget(filterForm.eventsPlanned) }}
-            {{ form_label(filterForm.eventsPlanned) }}
-            <br>
-            {{ form_widget(filterForm.eventsRegistered) }}
-            {{ form_label(filterForm.eventsRegistered) }}
-            <br>
-            {{ form_widget(filterForm.eventsNotRegistered) }}
-            {{ form_label(filterForm.eventsNotRegistered) }}
-            <br>
-            {{ form_widget(filterForm.eventsPassed) }}
-            {{ form_label(filterForm.eventsPassed) }}
+            <div class="filter-item">{{ form_widget(filterForm.eventsPlanned) }}    {{ form_label(filterForm.eventsPlanned) }}
+                <br> {{ form_widget(filterForm.eventsRegistered) }}    {{ form_label(filterForm.eventsRegistered) }}
+                <br> {{ form_widget(filterForm.eventsNotRegistered) }}    {{ form_label(filterForm.eventsNotRegistered) }}
+                <br> {{ form_widget(filterForm.eventsPassed) }}    {{ form_label(filterForm.eventsPassed) }}</div>
         </div>
         <div class="filter-item">
 

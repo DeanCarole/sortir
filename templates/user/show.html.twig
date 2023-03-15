@@ -3,11 +3,11 @@
 {% block body %}
     <div class="profil">
 
-        {# TODO : affichage si photo #}
-        {% if user.picture is null %}
+{#         TODO : affichage si photo#}
+        {% if event.planner.picture is null %}
             <img class="imgUser" src="{{ asset('img/users/profil.png') }}" alt="user picture default">
         {% else %}
-            <img class="imgUser" src="{{ asset('img/users/') ~ user.picture }}" alt="user picture">
+            <img class="imgUser" src="{{ asset('img/users/') ~ event.planner.picture }}" alt="user picture">
         {% endif %}
 
 

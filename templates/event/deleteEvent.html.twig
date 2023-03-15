@@ -2,9 +2,9 @@
 
 
 {% block body %}
-
+    <div class="profil">
     <h1>Annuler une sortie</h1>
-    <div class="container">
+
         {% set trans_day_hash = {
             'Monday': 'Lundi',
             'Tuesday': 'Mardi',
@@ -45,11 +45,14 @@
         {{ form_widget(cancelEventForm) }}
         {{ form_errors(cancelEventForm) }}
         {{ form_rest(cancelEventForm) }}
+
+        <div style="display: inline-block">
             <a href="{{ path('main_home') }}"><button type="submit" class="login-button green">Enregistrer</button></a>
 
         {{ form_end(cancelEventForm) }}
 
         <a href="{{ path('main_home') }}"><button type="button" class="login-button">Annuler</button></a>
+    </div>
     </div>
 
 {% endblock %}
