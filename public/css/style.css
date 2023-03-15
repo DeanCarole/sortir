@@ -1,4 +1,7 @@
 body{
+    background: linear-gradient(#b7dbf6, #2d77fa);
+    background-attachment: fixed;
+    background-position: center center;
     font-family: 'Source Sans Pro', sans-serif;
     color: midnightblue;
     font-size: large;
@@ -12,6 +15,54 @@ h1, h2, h3, h4, h5, h6 {
 a:hover {
     color: saddlebrown;
 }
+/* -------- formulaire -------- */
+form {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #d6e2f6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.profil{
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #c1dafa;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h2 {
+    text-align: center;
+}
+button {
+    margin-top: 20px;
+}
+h1{
+    text-align: center;
+    margin: 0 auto;
+}
+.logoSite{
+    max-width: 5%;
+    min-width: 100px;
+    display: block;
+    margin: 0 auto;
+
+}
+
 
 /* -------- Alignement filtres haut de page d'accueil -------- */
 .container-filter {
@@ -73,6 +124,8 @@ th {
     min-width: 140px;
     border: 5px solid #009688;
     border-radius: 5px;
+    display: block;
+    margin: 0 auto;
 }
 
 /* -------- Bouton connexion (page d'accueil logout) -------- */

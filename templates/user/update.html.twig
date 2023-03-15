@@ -1,11 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}
-
+{% block title %}Profil
 {% endblock %}
 
 {% block body %}
-<div class="container">
+
+
+    {{ form_start(userForm) }}
+    <div>
     <h2>Modifier Profil</h2>
 
     {# TODO : affichage si photo #}
@@ -14,18 +16,19 @@
     {% else %}
         <img class="imgUser" src="{{ asset('img/users/profil.png') }}" alt="user picture default">
     {% endif %}
-
-    {{ form_start(userForm) }}
+        <br>
+    </div>
     {{ form_widget(userForm) }}
     {{ form_errors(userForm) }}
     {{ form_rest(userForm) }}
-
+    <br>
     <button type="submit" class="login-button green">Enregistrer</button>
-    {{ form_end(userForm) }}
-
     <a href="{{ path('main_home') }}">
         <button type="button" class="login-button">Annuler</button>
     </a>
-</div>
+    {{ form_end(userForm) }}
+
+
+
 {% endblock %}
 

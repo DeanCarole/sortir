@@ -7,22 +7,30 @@
 
 {% endblock %}
 
-{% block body %}
 
-    <h2>Filtrer les sorties</h2>
-    <h4>{{ user.username }}</h4>
-    <h4>{{ "now"|date("d/m/Y") }}</h4>
+{% block body %}
+    <div class="container-filter">
+        <div class="filter-item">
+            <h2>Filtrer les sorties</h2>
+        </div>
+        <div class="filter-item">
+            <h3>{{ user.username }}</h3>
+            <h3>{{ "now"|date("d/m/Y") }}</h3>
+        </div>
+    </div>
 
     <div class="container-filter">
 
         {# div.flexsur3colonnes #}
-        <div class="filter-item">
+        <div class="filter-item" >
+
             {{ form_start(filterForm) }}
             {{ form_errors(filterForm) }}
             {{ form_row(filterForm.campus) }}
             {{ form_row(filterForm.name) }}
             {{ form_row(filterForm.startDate) }}
             {{ form_row(filterForm.endDate) }}
+
         </div>
         <div class="filter-item">
             {{ form_row(filterForm.eventsPlanned) }}
@@ -39,28 +47,28 @@
 
     <br>
 
-<div class="tableau">
-    <table>
-        <thead>
-        <tr>
-            <th>Nom de la sortie</th>
-            <th>Date de la sortie</th>
-            <th>Clôture</th>
-            <th>inscrits/places</th>
-            <th>Etat</th>
-            <th>Inscrit</th>
-            <th>Organisateur</th>
-            <th>Actions</th>
-        </tr>
-        </thead>
-        <tbody>
-    {% for event in events %}
+    <div class="tableau">
+        <table>
+            <thead>
             <tr>
-                <td>{{event.name }}</td>
-                <td>{{ event.startDateTime | date("d/m/Y à H:i")}}</td>
-                <td>{{  event.registrationDeadline | date("d/m/Y")}}</td>
-                <td>{{ event.user | length }} / {{ event.nbRegistrationMax}}</td>
-{#                <td>{{ event.state.label }}</td>#}
+                <th>Nom de la sortie</th>
+                <th>Date de la sortie</th>
+                <th>Clôture</th>
+                <th>inscrits/places</th>
+                <th>Etat</th>
+                <th>Inscrit</th>
+                <th>Organisateur</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for event in events %}
+            <tr>
+                <td>{{ event.name }}</td>
+                <td>{{ event.startDateTime | date("d/m/Y à H:i") }}</td>
+                <td>{{ event.registrationDeadline | date("d/m/Y") }}</td>
+                <td>{{ event.user | length }} / {{ event.nbRegistrationMax }}</td>
+                {#                <td>{{ event.state.label }}</td> #}
                 {% set state = event.state.label %}
                 {% if state == 'created' %}
                     <td>En création</td>
@@ -83,13 +91,16 @@
                 {% if state == 'archived' %}
                     <td>Archivée</td>
                 {% endif %}
-{#                <td>{{ event.state.label }}</td>#}
+                {#                <td>{{ event.state.label }}</td> #}
                 <td>{% if app.user and app.user.isRegister(event) %} X {% else %} {% endif %}</td>
-                <td><a href="{{ path('user_show', {'id' : event.id})}}">{{ event.planner.name }} {{ event.planner.firstName | slice(0,1)}}.</a></td>
+                <td>
+                    <a href="{{ path('user_show', {'id' : event.id}) }}">{{ event.planner.name }} {{ event.planner.firstName | slice(0,1) }}
+                        .</a></td>
                 <td><a href="{{ path('event_show', {'id' : event.id}) }}">Afficher</a> -
 
                     {% if event.getPlanner() == user %}
-                        <a href="{{ path('event_updateEvent', {'id': event.id}) }}">Modifier</a> - <a href="{{ path('event_deleteEvent', {'id': event.id}) }}">Annuler</a>
+                        <a href="{{ path('event_updateEvent', {'id': event.id}) }}">Modifier</a> - <a
+                            href="{{ path('event_deleteEvent', {'id': event.id}) }}">Annuler</a>
                     {% endif %}
 
                     {% if event.getPlanner() != user %}
@@ -100,12 +111,23 @@
                         {% endif %}
                     {% endif %}
                 </td>
-    {% endfor %}
-        </tbody>
-    </table>
-</div>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
     <br>
-    <a href="{{ path('event_add') }}"><button type="button" class="login-button green" id="createEvent">Créer une sortie</button></a>
+    <a href="{{ path('event_add') }}">
+        <button type="button" class="login-button green" id="createEvent">Créer une sortie</button>
+    </a>
 
+{% endblock %}
+{% block styleCss %}
+    <style>
+        body {
+            background-attachment: fixed;
+            background-position: center center;
+            background-image: linear-gradient(60deg, rgba(0, 0, 0, 0), rgba(90, 90, 0, 0)),
+            url("{{ asset('img/top-view-clear-ocean-water-texture.jpg') }}");
+        }</style>
 {% endblock %}

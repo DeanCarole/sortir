@@ -15,8 +15,9 @@
     <body>
 
     {% include 'bodyStructure/header/header.html.twig' %}
-
+    {% block styleCss %}{% endblock %}
     <main>
+
         {% for label, messages in app.flashes %}
             {% for message in messages %}
                 <div class="flash flash-{{ label }}">
