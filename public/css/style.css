@@ -285,11 +285,10 @@ ul {
     margin: auto;
 }
 
-.buttonBackHome{
-    /*justify-content: center;*/
-    /*align-items: center;*/
-    width: auto;
-    margin: auto;
+.buttonBackHome {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /*-------------------------Formulaire créer une sortie ------------------------------------------------*/
