@@ -62,12 +62,15 @@ class MainController extends AbstractController
 //        ]);
 //    }
     #[Route('/home/{id}', name: 'main_addUserEvent', requirements: ['id' => '\d+'])]
-    public function addUserEvent(int $id, StateRepository $stateRepository, EventRepository $eventRepository, UserRepository $userRepository): Response
+    public function addUserEvent(int $id, StateRepository $stateRepository, EventRepository $eventRepository, UserRepository $userRepository, Update $update): Response
     {
+        //je récupère mon tableau d'état
+        $states = $update->tableState();
+
         $event = $eventRepository->find($id);
         $user = $this->getUser();
-        $stateClosed = $stateRepository->findOneBy(['label' => 'closed']);
-        $stateOpen = $stateRepository->findOneBy(['label' => 'open']);
+        $stateClosed = $states['closed'];
+        $stateOpen = $states['open'];
 
         // Vérifie si déjà inscrit on le le désinscrit
         if ($user->isRegister($event)) {
