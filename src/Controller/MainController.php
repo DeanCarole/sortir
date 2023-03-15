@@ -68,18 +68,24 @@ class MainController extends AbstractController
         $user = $this->getUser();
         $stateClosed = $stateRepository->findOneBy(['label' => 'closed']);
         $stateOpen = $stateRepository->findOneBy(['label' => 'open']);
-        // Vérifie si déjà inscrit
+
+        // Vérifie si déjà inscrit on le le désinscrit
         if ($user->isRegister($event)) {
             $user->removeEvent($event);
             $event->removeUser($user);
+            $event->setState($stateOpen);
             $this->addFlash('success',"Désinscrit à la sortie !");
         } else {
             // Si pas encore inscrit, vérifie le nombre maximal d'inscriptions
             $maxRegistrations = $event->getNbRegistrationMax();
             if ($maxRegistrations && count($event->getUser()) >= $maxRegistrations) {
-                $event->setState($stateClosed);
                 // Le nombre maximal d'inscriptions a été atteint
                 $this->addFlash('error',"Sortie complète !");
+           } elseif ( count($event->getUser()) == $maxRegistrations -1){
+                $user->addEvent($event);
+                $event->addUser($user);
+                $event->setState($stateClosed);
+                $this->addFlash('success',"Inscrit à la sortie !");
             } else {
                 $user->addEvent($event);
                 $event->addUser($user);
