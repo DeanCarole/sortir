@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Event;
+use App\Entity\State;
+use App\Form\CancelEventType;
 use App\Form\EventType;
 use App\Repository\EventRepository;
 use App\Repository\PlaceRepository;
@@ -106,31 +108,38 @@ class EventController extends AbstractController
     }
 
     #[Route('/{id}/delete', name: 'deleteEvent', requirements: ['id' => '\d+'])]
-    public function deleteEvent(int $id, EventRepository $eventRepository, Request $request): Response
+    public function deleteEvent(int $id, EventRepository $eventRepository, Request $request, StateRepository $stateRepository): Response
     {
         //Récupération d'un event par son id
         $event = $eventRepository->find($id);
 
-        $eventForm = $this->createForm(EventType::class, $event);
+        //Stockage de la description d'origine
+        $eventDataInit = $event->getEventData();
+
+        //Récupération d'un état de type closed
+        $stateCanceled = $stateRepository->findOneBy(['label' => 'canceled']);
+
+        //Génération du formulaire & lecture de la requête HTTP
+        $eventForm = $this->createForm(CancelEventType::class, $event);
         $eventForm->handleRequest($request);
 
         if ($eventForm->isSubmitted() && $eventForm->isValid()) {
-            $event = $eventForm->getData();
-            $eventData = $eventForm->get('eventData')->getData();
-            if ($eventData) {
+            //Append du message d'annulation en complément de la description
+            $event->setEventData($eventDataInit . ' ANNULE : ' . $eventForm->get('eventData')->getData());
 
-                $event->setEventData();
-            }
+            //Passage à l'état annulé
+            $event->setState($stateCanceled);
 
+            //Sauvegarde en base de donnée + décelenchement du message flash
             $eventRepository->save($event,true);
             $this->addFlash('success',"Sortie annulée !");
 
-            // rediriger l'utilisateur vers une autre page
+            //Rediriger l'utilisateur vers une autre page
             return $this->redirectToRoute('main_home');
         }
 
         return $this->render('event/deleteEvent.html.twig', [
-            'event' => $event, 'eventForm' => $eventForm->createView()
+            'event' => $event, 'cancelEventForm' => $eventForm->createView()
         ]);
     }
 

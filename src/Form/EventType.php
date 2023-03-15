@@ -38,21 +38,17 @@ class EventType extends AbstractType
                 'label' => 'Durée (en minutes): '
             ])
             ->add('eventData', TextareaType::class, [
-                'mapped' => false,
                 'label' => 'Description et infos : '
             ])
             ->add('campus', EntityType::class, ['class' => Campus::class,
                 'choice_label' => 'name',
                 'label' => 'Campus : ',
-                'placeholder' => 'user.campus.label'
+                'placeholder' => 'Choisir un campus'
             ])
             ->add ('place', EntityType::class, ['class' => Place::class,
                 'choice_label' => 'name',
                 'label' => 'Lieu : '
-            ])
-
-        ;
-
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

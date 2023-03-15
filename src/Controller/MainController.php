@@ -21,10 +21,9 @@ class MainController extends AbstractController
     public function home(EventRepository $eventRepository, Update $update, Request $request): Response
     {
         $user = $this->getUser();
-       // $update->updateState();
+        // $update->updateState();
 
         //Liste l'ensemble des sorties
-
         $filtre = new Filter();
 
         //Création fomrulaire des filtres

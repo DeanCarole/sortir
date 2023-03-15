@@ -3,7 +3,6 @@
 
 {% block body %}
 
-
     <h1>Annuler une sortie</h1>
     <div class="container">
         {% set trans_day_hash = {
@@ -31,6 +30,8 @@
             'Nov': 'Novembre',
             'Dec': 'Décembre'
         } %}
+        {{ form_start(cancelEventForm) }}
+
         <ul>
             <li>Nom de la sortie : {{ event.name }}</li>
             <li>Date et heure de la sortie : {{ trans_day_hash[event.startDateTime | date('l')] }}
@@ -41,15 +42,14 @@
             <li>Lieu : {{ event.place.name }}</li>
         </ul>
 
-
-            {{ form_row(eventForm.eventData) }}
-
-
+        {{ form_widget(cancelEventForm) }}
+        {{ form_errors(cancelEventForm) }}
+        {{ form_rest(cancelEventForm) }}
             <a href="{{ path('main_home') }}"><button type="submit" class="login-button green">Enregistrer</button></a>
-            <a href="{{ path('main_home') }}"><button type="button" class="login-button">Annuler</button></a>
 
+        {{ form_end(cancelEventForm) }}
 
-
+        <a href="{{ path('main_home') }}"><button type="button" class="login-button">Annuler</button></a>
     </div>
 
 {% endblock %}
