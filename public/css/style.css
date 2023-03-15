@@ -77,22 +77,21 @@ h1{
     margin-left: 10%;
 }
 
-/* -------- Design du header : alignement logo + éléments navbar -------- */
+/* -------- Alignement no du site à côté du logo sur page home -------- */
 
-.container-header{
-
-
-
-
+#site-name{
+    display: flex;
+    float: left;
+    margin-left: 0px;
+    margin-top: 3%;
 }
-
 
 
 /* -------- Tableau des sorties de la page d'accueil home -------- */
 .tableau {
     margin: auto;
-    min-height: 500px;
-    height: 500px; /* pour permettre une hauteur variable en fonction du contenu */
+    min-height: 470px;
+    height: 470px; /* pour permettre une hauteur variable en fonction du contenu */
     min-width: 1200px;
     width: 80%; /* pour permettre une largeur variable en fonction du contenu */
     overflow: auto; /* pour activer la scrollbar */

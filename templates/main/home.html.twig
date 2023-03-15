@@ -92,31 +92,41 @@
                     <td>Archivée</td>
                 {% endif %}
                 {#                <td>{{ event.state.label }}</td> #}
-                <td>{% if app.user and app.user.isRegister(event) %} X {% else %} {% endif %}</td>
+                <td style="text-align: center">{% if app.user and app.user.isRegister(event) %} X {% else %} {% endif %}</td>
                 <td>
                     <a href="{{ path('user_show', {'id' : event.id}) }}">{{ event.planner.name }} {{ event.planner.firstName | slice(0,1) }}
                         .</a></td>
-                <td><a href="{{ path('event_show', {'id' : event.id}) }}">Afficher</a> -
+                <td><a href="{{ path('event_show', {'id' : event.id}) }}">Afficher</a>
 
                     {% if event.getPlanner() == user %}
+                        {% if event.state.label != 'canceled' %}
+                            -
                         <a href="{{ path('event_updateEvent', {'id': event.id}) }}">Modifier</a> - <a
                             href="{{ path('event_deleteEvent', {'id': event.id}) }}">Annuler</a>
+                        {% endif %}
                     {% endif %}
 
                     {% if event.getPlanner() != user %}
-                        {% if app.user and app.user.isRegister(event) %}
-                            <a href="{{ path('main_addUserEvent', {'id': event.id}) }}">Se désinscrire</a>
-                        {% else %}
-                            <a href="{{ path('main_addUserEvent', {'id': event.id}) }}">S'inscrire</a>
+
+                        {% if event.state.label != 'finished' and event.state.label != 'canceled' and event.state.label != 'closed' %}
+
+                            {% if app.user and app.user.isRegister(event) %}
+                                 -
+                                <a href="{{ path('main_addUserEvent', {'id': event.id}) }}">Se désinscrire</a>
+                            {% else %}
+                                 -
+                                <a href="{{ path('main_addUserEvent', {'id': event.id}) }}">S'inscrire</a>
+                            {% endif %}
+
                         {% endif %}
+
                     {% endif %}
                 </td>
                 {% endfor %}
             </tbody>
         </table>
     </div>
-
-    <br>
+{#    <br>#}
     <a href="{{ path('event_add') }}">
         <button type="button" class="login-button green" id="createEvent">Créer une sortie</button>
     </a>

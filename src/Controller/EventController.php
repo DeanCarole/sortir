@@ -70,7 +70,6 @@ class EventController extends AbstractController
     #[Route('/publish{id}', name: 'publish', requirements: ['id' => '\d+'])]
     public function publish(int $id, EventRepository $eventRepository, StateRepository $stateRepository): Response
     {
-
         //Récupération d'un event par son id
        $event = $eventRepository->find($id);
        $stateCreated = $stateRepository->findOneBy(['label' => 'created']);

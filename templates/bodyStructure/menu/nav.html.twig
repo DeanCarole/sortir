@@ -1,18 +1,17 @@
 <nav>
     <div class="container-filter">
-    <div class="filter-item">
-
-    <img class="logoSite" src="{{ asset('img/logo.png') }}" alt="logo">
-       <h1>SORTIR !</h1>
-    </div>
-    <div class="filter-item">
-    <ul>
-        {% if is_granted("ROLE_USER") %}
-            <li><a href="{{ path('main_home') }}"><h3>Accueil</h3></a></li>
-            <li><a href="{{ path('user_update') }}"><h3>Mon profil</h3></a></li>
-            <li><a href="{{ path('app_logout') }}"><h3>Se déconnecter</h3></a></li>
-        {% endif %}
-    </ul>
-    </div>
+        <div class="filter-item">
+            <img class="logoSite" src="{{ asset('img/logo.png') }}" alt="logo">
+        </div>
+            <h1 id="site-name">SORTIR !</h1>
+        <div class="filter-item">
+        <ul>
+            {% if is_granted("ROLE_USER") %}
+                <li><a href="{{ path('main_home') }}"><h3>Accueil</h3></a></li>
+                <li><a href="{{ path('user_update') }}"><h3>Mon profil</h3></a></li>
+                <li><a href="{{ path('app_logout') }}"><h3>Se déconnecter</h3></a></li>
+            {% endif %}
+        </ul>
+        </div>
     </div>
 </nav>
