@@ -23,20 +23,29 @@
 
         {# div.flexsur3colonnes #}
         <div class="filter-item" >
-
             {{ form_start(filterForm) }}
             {{ form_errors(filterForm) }}
             {{ form_row(filterForm.campus) }}
             {{ form_row(filterForm.name) }}
-            {{ form_row(filterForm.startDate) }}
-            {{ form_row(filterForm.endDate) }}
-
+            <div style="display: inline-block">
+                {{ form_label(filterForm.startDate) }}
+                {{ form_widget(filterForm.startDate) }}
+                {{ form_label(filterForm.endDate) }}
+                {{ form_widget(filterForm.endDate) }}
+            </div>
         </div>
         <div class="filter-item">
-            {{ form_row(filterForm.eventsPlanned) }}
-            {{ form_row(filterForm.eventsRegistered) }}
-            {{ form_row(filterForm.eventsNotRegistered) }}
-            {{ form_row(filterForm.eventsPassed) }}
+            {{ form_widget(filterForm.eventsPlanned) }}
+            {{ form_label(filterForm.eventsPlanned) }}
+            <br>
+            {{ form_widget(filterForm.eventsRegistered) }}
+            {{ form_label(filterForm.eventsRegistered) }}
+            <br>
+            {{ form_widget(filterForm.eventsNotRegistered) }}
+            {{ form_label(filterForm.eventsNotRegistered) }}
+            <br>
+            {{ form_widget(filterForm.eventsPassed) }}
+            {{ form_label(filterForm.eventsPassed) }}
         </div>
         <div class="filter-item">
 
