@@ -73,11 +73,25 @@ class EventController extends AbstractController
 
         //Récupération d'un event par son id
        $event = $eventRepository->find($id);
+       $stateCreated = $stateRepository->findOneBy(['label' => 'created']);
 
-        //modifier l'état de la sortie
-        $state = $stateRepository->findOneBy(['label' => 'open']);
-        $event->setState($state);
-        $eventRepository->save($event, true);
+       // mettre des conditions pour modifier l'état de la sortie
+        //conditions = état created
+
+        //récupère l'état de la sortie
+        $state = $event->getState();
+        if ($state === $stateCreated) {
+
+            //modifier l'état de la sortie
+            $state = $stateRepository->findOneBy(['label' => 'open']);
+            $event->setState($state);
+            $eventRepository->save($event, true);
+            $this->addFlash('success', "Etat modifié : Sortie publiée !");
+        } else {
+            //throw $this->createNotFoundException("Oups ! Tu ne peux plus publier cette sortie !");
+            $this->addFlash('error', "Sortie non publiable, n'a pas le bon état !");
+        }
+
 
         return $this->redirectToRoute('main_home');
     }

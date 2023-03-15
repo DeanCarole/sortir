@@ -19,7 +19,7 @@ class Event
     #[ORM\Column]
     private ?int $id = null;
 
-    #[Assert\NotBlank]
+
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank]
     #[Assert\Length(
