@@ -22,13 +22,14 @@
     {{ form_errors(userForm) }}
     {{ form_rest(userForm) }}
     <br>
-    <button type="submit" class="login-button green">Enregistrer</button>
-    <a href="{{ path('main_home') }}">
-        <button type="button" class="login-button">Annuler</button>
-    </a>
-    {{ form_end(userForm) }}
 
-
+    <div style="display: inline-block">
+        <button type="submit" class="login-button green">Enregistrer</button>
+        <a href="{{ path('main_home') }}">
+            <button type="button" class="login-button">Annuler</button>
+        </a>
+        {{ form_end(userForm) }}
+    </div>
 
 {% endblock %}
 
