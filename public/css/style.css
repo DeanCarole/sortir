@@ -226,7 +226,25 @@ nav li {
 }
 
 .flash-success {
-    background-color: lawngreen
+    border: 2px solid #59B159;
+    background-color: palegreen;
+    color: #59B159;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px #59B159;
+    font-family: 'Helvetica', sans-serif;
+}
+
+.flash-error {
+    border: 2px solid #FF4D4D;
+    background-color: #FFCDD2;
+    color: #FF4D4D;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px #FF4D4D;
+    font-family: 'Helvetica', sans-serif;
 }
 
 /* -------- Design affichage d'une sortie (show) : gestion des deux blocs "infos sortie" et "coordonnées" -------- */
