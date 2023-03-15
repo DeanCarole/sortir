@@ -280,6 +280,18 @@ ul {
     margin: 0;
 }
 
+.event-block-users{
+    width: 600px;
+    margin: auto;
+}
+
+.buttonBackHome{
+    /*justify-content: center;*/
+    /*align-items: center;*/
+    width: auto;
+    margin: auto;
+}
+
 /*-------------------------Formulaire créer une sortie ------------------------------------------------*/
 .container {
     max-width: 1500px;

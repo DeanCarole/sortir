@@ -6,6 +6,10 @@
             <h1 id="site-name">SORTIR !</h1>
         <div class="filter-item">
         <ul>
+            {% if is_granted("ROLE_ADMIN") %}
+                <li><a href="{{ path('dashboard_city') }}"><h3>Villes</h3></a></li>
+                <li><a href="{{ path('dashboard_campus') }}"><h3>Campus</h3></a></li>
+            {% endif %}
             {% if is_granted("ROLE_USER") %}
                 <li><a href="{{ path('main_home') }}"><h3>Accueil</h3></a></li>
                 <li><a href="{{ path('user_update') }}"><h3>Mon profil</h3></a></li>

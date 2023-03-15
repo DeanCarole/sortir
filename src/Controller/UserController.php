@@ -60,7 +60,6 @@ class UserController extends AbstractController
             // Modifier le mot de passe si le champ est rempli
             $password = $userForm->get('password')->getData();
             if ($password) {
-                //$user = new User();
                 $newPassword = $passwordHasher->hashPassword($user, $password);
                 $user->setPassword($newPassword);
             }

@@ -10,7 +10,6 @@
             <img class="imgUser" src="{{ asset('img/users/') ~ event.planner.picture }}" alt="user picture">
         {% endif %}
 
-
         <h2>{{ event.planner.username }}</h2>
         <div> Nom : {{ event.planner.name }} </div>
         <div> Prénom : {{ event.planner.firstName }} </div>
@@ -20,10 +19,7 @@
         <a href="{{ path('main_home') }}">
             <button type="button" class="login-button">Retour</button>
         </a>
-
-
     </div>
-
 
 {% endblock %}
 

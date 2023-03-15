@@ -80,8 +80,8 @@
 
             {% for user in event.user %}
             <tr>
-                <td> <a href="{{ path('user_showuserevent', {'id' : user.id})}}"> {{ user.username }}</a></td>
-                <td>{{ user.name }}</td>
+                <td> <a href="{{ path('user_showuserevent', {'id' : user.id})}}">{{ user.username }}</a></td>
+                <td>{{ user.firstname }} {{ user.name | upper }}</td>
             </tr>
 
             {% endfor %}
@@ -89,7 +89,7 @@
         </table>
     </div>
     
-    <div>
+    <div class="buttonBackHome">
         <a href="{{ path('main_home') }}">
             <button type="button" class="login-button red">Retour accueil</button>
         </a>

@@ -14,7 +14,9 @@ class CancelEventType extends AbstractType
     {
         $builder
             ->add('eventData', TextareaType::class, [
-                'label' => "Motif d'annulation de la sortie : "
+                'label' => "Motif d'annulation de la sortie : ",
+                'required'=> true,
+                'mapped' => false,
             ]);
     }
 
