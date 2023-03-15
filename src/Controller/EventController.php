@@ -9,6 +9,7 @@ use App\Form\EventType;
 use App\Repository\EventRepository;
 use App\Repository\PlaceRepository;
 use App\Repository\StateRepository;
+use App\Services\Update;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,12 +19,13 @@ use Symfony\Component\Routing\Annotation\Route;
 class EventController extends AbstractController
 {
     #[Route('/add', name: 'add')]
-    public function add(Request $request, EventRepository $eventRepository, PlaceRepository $placeRepository, StateRepository $stateRepository): Response
+    public function add(Request $request, EventRepository $eventRepository, PlaceRepository $placeRepository, StateRepository $stateRepository, Update $update): Response
     {
         //crée un évènement vide
         $event = new Event();
         //je crée un objet état avec pour label created
-        $state = $stateRepository->findOneBy(['label'=>'created']);
+        $states = $update->tableState();
+        $state = $states['created'];
         //je set l'état created à l'évènement
         $event->setState($state);
 
@@ -68,11 +70,15 @@ class EventController extends AbstractController
 
 
     #[Route('/publish{id}', name: 'publish', requirements: ['id' => '\d+'])]
-    public function publish(int $id, EventRepository $eventRepository, StateRepository $stateRepository): Response
+    public function publish(int $id, EventRepository $eventRepository, StateRepository $stateRepository, Update $update): Response
     {
         //Récupération d'un event par son id
        $event = $eventRepository->find($id);
-       $stateCreated = $stateRepository->findOneBy(['label' => 'created']);
+       //je récupère mon tableau d'état
+        $states = $update->tableState();
+        //je récupère mon état created
+       $stateCreated =  $states['created'];
+      // $stateCreated = $stateRepository->findOneBy(['label' => 'created']);
 
        // mettre des conditions pour modifier l'état de la sortie
         //conditions = état created
@@ -82,7 +88,7 @@ class EventController extends AbstractController
         if ($state === $stateCreated) {
 
             //modifier l'état de la sortie
-            $state = $stateRepository->findOneBy(['label' => 'open']);
+            $state = $states['open'];
             $event->setState($state);
             $eventRepository->save($event, true);
             $this->addFlash('success', "Etat modifié : Sortie publiée !");
@@ -121,16 +127,19 @@ class EventController extends AbstractController
     }
 
     #[Route('/{id}/delete', name: 'deleteEvent', requirements: ['id' => '\d+'])]
-    public function deleteEvent(int $id, EventRepository $eventRepository, Request $request, StateRepository $stateRepository): Response
+    public function deleteEvent(int $id, EventRepository $eventRepository, Request $request, StateRepository $stateRepository, Update $update): Response
     {
         //Récupération d'un event par son id
         $event = $eventRepository->find($id);
+
+        //je récupère mon tableau d'état
+        $states = $update->tableState();
 
         //Stockage de la description d'origine
         $eventDataInit = $event->getEventData();
 
         //Récupération d'un état de type closed
-        $stateCanceled = $stateRepository->findOneBy(['label' => 'canceled']);
+        $stateCanceled = $states['canceled'];
 
         //Génération du formulaire & lecture de la requête HTTP
         $eventForm = $this->createForm(CancelEventType::class, $event);

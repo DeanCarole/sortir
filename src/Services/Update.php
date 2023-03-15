@@ -22,7 +22,18 @@ class Update
     }
 
 
-    public function updateState(): void
+    //fonction qui récupère tous les états de la BDD
+    public function tableState (){
+
+        $states = [] ;
+        foreach ($this->stateRepository->findAll() as $state){
+            $i = $state->getLabel();
+            $states [$i] = $state;
+        }
+        return $states;
+    }
+
+    public function updateState($states): void
     {
     //modifier statut d'un évènement suivant la date de début de la sortie
 
@@ -34,34 +45,33 @@ class Update
 
         //récupère le statut de l'évènement
         $status = $event->getState()->getLabel();
-        
+
+        //cette variable stocke la fin de l'évènement (date + début)
        $event1 = clone $event->getStartDateTime();
        $event1->modify("+" .$event->getDuration() . "minute");
 
-       if($event->getId() == 1){
-           dump($event);
-       }
 
         //condition pour modifier l'évènement
         //cas où ça date de plus de 1 mois
         if ($event1 < new DateTime('-1 month') ) {
-            $state = $this->stateRepository->findOneBy(['label' => 'archived']);
+
+             $state = $states['archived'];
+            //$state = $this->stateRepository->findOneBy(['label' => 'archived']);
             $event->setState($state);
             //entre 1 mois et aujourd'hui
         } else  if ($event1 < new DateTime())  {
-            $state = $this->stateRepository->findOneBy(['label' => 'finished']);
+            $state = $states['finished'];
+           // $state = $this->stateRepository->findOneBy(['label' => 'finished']);
             $event->setState($state);
         //} else if ((new \DateTime('now') >= $event->getStartDateTime()) &&  ( $event->getStartDateTime() < $event1 )) {
         } else if ($event->getStartDateTime() < new DateTime()) {
-            $state = $this->stateRepository->findOneBy(['label' => 'inProgress']);
+            $state = $states['inProgress'];
+           // $state = $this->stateRepository->findOneBy(['label' => 'inProgress']);
             $event->setState($state);
         } else if ((new DateTime() > $event->getRegistrationDeadline())){
-            $state = $this->stateRepository->findOneBy(['label' => 'closed']);
+            $state = $states['closed'];
+            //$state = $this->stateRepository->findOneBy(['label' => 'closed']);
             $event->setState($state);
-        }
-
-        if($event->getId() == 1){
-            dump($event);
         }
            // $this->eventRepository->save($event, true);
         //permet de faire le persist et le flush -> modifie la base de données

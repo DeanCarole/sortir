@@ -13,7 +13,7 @@ class SecurityController extends AbstractController
     #[Route(path: '/login', name: 'app_login')]
     public function login(AuthenticationUtils $authenticationUtils, Update $update): Response
     {
-        $update->updateState();
+        $update->updateState($update->tableState());
 
         /* Permet de récupérer l'instance de l'user connecté côté back (dans tous les controllers)
         $this->getUser() accessible depuis tous les controllers */
