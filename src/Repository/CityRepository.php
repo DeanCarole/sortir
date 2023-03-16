@@ -43,10 +43,10 @@ class CityRepository extends ServiceEntityRepository
     public function findCitiesByName(AdminCities $cityNameFilter){
 
         $qb = $this->createQueryBuilder('c');
-//        $qb
-//            //Jointure avec la table Places
-//            ->leftJoin('c.places', 'places')
-//            ->addSelect('places');
+        $qb
+            //Jointure avec la table Places
+            ->leftJoin('c.places', 'places')
+            ->addSelect('places');
 
             //Filtre sur le nom de ville saisi par l'utilisateur
             if($cityNameFilter->getName()){
@@ -56,7 +56,7 @@ class CityRepository extends ServiceEntityRepository
 
         //Renvoie une instance de Query
         $query = $qb->getQuery();
-        //dd($query);
+
         return $query->getResult();
     }
 

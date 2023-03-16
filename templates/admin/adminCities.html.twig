@@ -47,6 +47,22 @@
                 </td>
             </tr>
             {% endfor %}
+
+            <tr>
+                <td>
+                    {{ form_start(cityForm) }}
+                    {{ form_widget(cityForm.name) }}
+                    {{ form_errors(cityForm.name) }}
+                    {{ form_rest(cityForm.name) }}
+                </td>
+                <td>
+                    {{ form_widget(cityForm.zipCode) }}
+                    {{ form_errors(cityForm.zipCode) }}
+                    {{ form_rest(cityForm.zipCode) }}
+                </td>
+                <td><button type="submit">Ajouter</button></td>
+                {{ form_end(cityForm) }}
+            </tr>
             </tbody>
         </table>
     </div>

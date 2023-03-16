@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Campus;
+use App\Form\Filter\AdminCampuses;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -37,6 +38,31 @@ class CampusRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    public function findCampusesByName(AdminCampuses $campusNameFilter){
+
+        $qb = $this->createQueryBuilder('c');
+
+        $qb
+            //Jointure avec la table Event
+            ->leftJoin('c.events', 'events')
+            ->addSelect('events')
+
+            //Jointure avec la table User
+            ->leftJoin('c.users', 'users')
+            ->addSelect('users');
+
+            //Filtre sur le nom de campus saisi par l'utilisateur
+            if($campusNameFilter->getName()){
+                $qb->andWhere('c.name LIKE :campus')
+                    ->setParameter('campus', '%' . $campusNameFilter->getName() . '%');
+            }
+
+        //Renvoie une instance de Query
+        $query = $qb->getQuery();
+
+        return $query->getResult();
     }
 
 //    /**
