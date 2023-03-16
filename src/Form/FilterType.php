@@ -53,7 +53,7 @@ class FilterType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Filter::class,
-            'required' =>false
+            'required' => false
         ]);
     }
 }

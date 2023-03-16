@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\City;
+use App\Form\Filter\AdminCities;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -37,6 +38,26 @@ class CityRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    public function findCitiesByName(AdminCities $cityNameFilter){
+
+        $qb = $this->createQueryBuilder('c');
+//        $qb
+//            //Jointure avec la table Places
+//            ->leftJoin('c.places', 'places')
+//            ->addSelect('places');
+
+            //Filtre sur le nom de ville saisi par l'utilisateur
+            if($cityNameFilter->getName()){
+                $qb->andWhere('c.name LIKE :city')
+                    ->setParameter('city', '%' . $cityNameFilter->getName() . '%');
+            }
+
+        //Renvoie une instance de Query
+        $query = $qb->getQuery();
+        //dd($query);
+        return $query->getResult();
     }
 
 //    /**

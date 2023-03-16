@@ -2,25 +2,26 @@
 
 namespace App\Form\Filter;
 
-use App\Entity\City;
 
 class AdminCities
 {
-    private ?City $city = null;
+    private ?string $name = null;
 
     /**
-     * @return City|null
+     * @return string|null
      */
-    public function getCity(): ?City
+    public function getName(): ?string
     {
-        return $this->city;
+        return $this->name;
     }
 
     /**
-     * @param City|null $city
+     * @param string|null $name
      */
-    public function setCity(?City $city): void
+    public function setName(?string $name): void
     {
-        $this->city = $city;
+        $this->name = $name;
     }
+
+
 }

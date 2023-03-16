@@ -1,20 +1,54 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AdminController on CITIES GESTION !{% endblock %}
+{% block title %}Gérer les villes{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <h1>Gérer les villes</h1>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'D:/wamp64/www/sortir/src/Controller/AdminController.php'|file_link(0) }}">src/Controller/AdminController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'D:/wamp64/www/sortir/templates/admin/adminCampuses.html.twig'|file_link(0) }}">templates/admin/index.html.twig</a></code></li>
-    </ul>
-</div>
+    <br>
+
+    <h2>Filtrer les villes</h2>
+
+    <br>
+
+    <div class="container-filter">
+        <div class="filter-item">
+            {{ form_start(filterCities) }}
+            {{ form_errors(filterCities) }}
+            {{ form_row(filterCities.name) }}
+
+        </div>
+        <div class="filter-item">
+            <button class="login-button green">Rechercher</button>
+        </div>
+        {{ form_end(filterCities) }}
+    </div>
+
+    <div class="tableau-admin">
+        <table>
+            <thead>
+            <tr>
+                <th>Villes</th>
+                <th>Code Postal</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {% for city in cities %}
+            <tr>
+                <td>{{ city.name }}</td>
+                <td>{{ city.zipCode }}</td>
+                <td>
+                    <a href="">Modifier</a>
+                     -
+                    <a href=""> Supprimer</a>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
 {% endblock %}

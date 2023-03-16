@@ -24,12 +24,12 @@ class MainController extends AbstractController
         // $update->updateState();
 
         //Liste l'ensemble des sorties
-        $filtre = new Filter();
+        $filter = new Filter();
 
         //Création fomrulaire des filtres
-        $filterForm = $this->createForm(FilterType::class, $filtre);
+        $filterForm = $this->createForm(FilterType::class, $filter);
         $filterForm->handleRequest($request);
-        $events = $eventRepository->findAllEventsFilter($filtre, $user);
+        $events = $eventRepository->findAllEventsFilter($filter, $user);
 
         return $this->render('main/home.html.twig', [
             'events' => $events,

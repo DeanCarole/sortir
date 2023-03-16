@@ -5,6 +5,11 @@ namespace App\Controller;
 use App\Entity\Campus;
 use App\Form\CampusType;
 use App\Repository\CampusRepository;
+use App\Form\Filter\AdminCities;
+use App\Form\Filter\Filter;
+use App\Form\FilterCitiesType;
+use App\Form\FilterType;
+use App\Repository\CityRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,11 +19,21 @@ use Symfony\Component\Routing\Annotation\Route;
 class AdminController extends AbstractController
 {
     #[Route('/city', name: 'city')]
-    public function setCities(): Response
+    public function setCities(CityRepository $cityRepository, Request $request): Response
     {
+        //Filtre pour les noms des villes
+        $filterCitiesByName = new AdminCities();
+
+        //Création formulaire du filtre
+        $filterCities = $this->createForm(FilterCitiesType::class, $filterCitiesByName);
+        $filterCities->handleRequest($request);
+
+        //Récup et stockage de l'ensemble des villes
+        $cities = $cityRepository->findCitiesByName($filterCitiesByName);
+
         return $this->render('admin/adminCities.html.twig', [
-            'controller_name' => 'AdminController',
-        ]);
+            'cities' => $cities,
+            'filterCities' => $filterCities->createView()]);
     }
 
     #[Route('/campus', name: 'campus')]
