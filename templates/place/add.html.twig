@@ -3,16 +3,23 @@
 {% block title %}Hello PlaceController!{% endblock %}
 
 {% block body %}
-<h1>Créer un lieu</h1>
+    <div class="profil">
+        <div class="label2">
+        <h1>Créer un lieu</h1>
 
-    {{ form_start(placeForm) }}
+        {{ form_start(placeForm) }}
 
-    {{ form_widget(placeForm) }}
-    {{ form_errors(placeForm) }}
+        {{ form_widget(placeForm) }}
+        {{ form_errors(placeForm) }}
+        <div style="display: inline-block">
+            <button class="login-button green">Enregistrer</button>
+            {{ form_end(placeForm) }}
 
-    <button class="login-button green">Enregistrer</button>
-    {{ form_end(placeForm) }}
 
-
-    <a href="{{ path('event_add') }}"><button type="button" class="login-button green">Annuler</button></a>
+            <a href="{{ path('event_add') }}">
+                <button type="button" class="login-button red">Annuler</button>
+            </a>
+        </div>
+        </div>
+    </div>
 {% endblock %}

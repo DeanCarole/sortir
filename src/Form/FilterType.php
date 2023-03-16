@@ -20,20 +20,20 @@ class FilterType extends AbstractType
             ->add('campus', EntityType::class, [
                 'class' => Campus::class,
                 'choice_label' => 'name',
-                'label' => 'Campus',
+                'label' => 'Campus : ',
                 'placeholder' => 'Choisir un campus'
             ])
             ->add('name', SearchType::class, [
-                'label' => 'Le nom de la sortie contient : ',
+                'label' => 'Sortie : ',
                 'attr' => ['placeholder' => 'Nom de sortie']
             ])
             ->add('startDate', DateType::class, [
                 'widget' => 'single_text',
-                'label' => "Entre "
+                'label' => "Entre"
             ])
             ->add('endDate', DateType::class, [
                 'widget' => 'single_text',
-                'label' => "et "
+                'label' => "et"
             ])
             ->add('eventsPlanned', CheckboxType::class, [
                 'label' => "Sorties dont je suis l'organisateur/trice"

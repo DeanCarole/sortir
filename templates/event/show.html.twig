@@ -7,6 +7,7 @@
     <div class="event-block">
 
         <div class="event-block-left">
+            <div class="profil2">
             <h2>Infos sortie</h2>
 
             {# Table de conversion des jours en français => utilisé plus bas #}
@@ -51,8 +52,9 @@
                 <li>Description et infos : {{ event.eventData }}</li>
             </ul>
         </div>
-
+        </div>
         <div class="event-block-right">
+            <div class="profil2">
             <h2>Coordonnées</h2>
             <ul>
                 <li>Campus : {{ event.campus.name }}</li>
@@ -64,7 +66,7 @@
             </ul>
         </div>
     </div>
-
+    </div>
     <div class="event-block-users">
         <h2>Liste des participants inscrits :</h2>
 
@@ -87,14 +89,14 @@
             {% endfor %}
             </tbody>
         </table>
-    </div>
+
     
     <div class="buttonBackHome">
         <a href="{{ path('main_home') }}">
             <button type="button" class="login-button red">Retour accueil</button>
         </a>
     </div>
-
+    </div>
 
 {% endblock %}
 

@@ -34,7 +34,9 @@ class UserType extends AbstractType
             ->add('phone', TextType::class, [
                 'label' => 'Téléphone : '
             ])
-            ->add('email')
+            ->add('email', TextType::class, [
+                'label' => 'Email : '
+            ])
             ->add('password', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'first_options' => [
@@ -46,11 +48,11 @@ class UserType extends AbstractType
                             'max' => 4096,
                         ]),
                     ],
-                    'label' => 'Mot de Passe',
+                    'label' => 'Mot de Passe : ',
 
                 ],
                 'second_options' => [
-                    'label' => 'Nouveau mot de passe',
+                    'label' => 'Nouveau mot de passe : ',
                 ],
                 'invalid_message' => 'The password fields must match.',
                 // Instead of being set onto the object directly,
@@ -60,13 +62,13 @@ class UserType extends AbstractType
             ])
             ->add('campus', EntityType::class, ['class' => Campus::class,
                 'choice_label' => 'name',
-                    'label' => 'Campus'
+                    'label' => 'Campus : '
             ])
             ->add('picture', FileType::class, [
                 //ajouter champs dans dans formulaire qui ne sont pas dans l'entité
                 //path du fichier temporaire
                 'required'=>false,
-                'mapped' =>false, 'label' => 'Modifier Image',
+                'mapped' =>false, 'label' => 'Modifier Image : ',
                 'constraints' =>[
                     new Image([
                         "maxSize"=>'7000k',

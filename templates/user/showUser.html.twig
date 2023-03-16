@@ -14,14 +14,16 @@
         {% endif %}
 
         <h2>{{ user.username }}</h2>
+
         <div> Nom : {{ user.name }} </div>
         <div> Prénom : {{ user.firstName }} </div>
         <div> Téléphone : {{ user.phone }} </div>
         <div> Email : {{ user.email }} </div>
         <div> Campus : {{ user.campus.name }} </div>
+        </div>
         <a href="{{ path('main_home') }}">
             <button type="button" class="login-button">Retour</button>
         </a>
-        </div>
+
 {% endblock %}
 

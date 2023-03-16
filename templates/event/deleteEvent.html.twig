@@ -4,7 +4,7 @@
 {% block body %}
     <div class="profil">
     <h1>Annuler une sortie</h1>
-
+        <div class="label2">
         {% set trans_day_hash = {
             'Monday': 'Lundi',
             'Tuesday': 'Mardi',
@@ -42,6 +42,7 @@
             <li>Lieu : {{ event.place.name }}</li>
         </ul>
 
+<div class="container2">
         {{ form_widget(cancelEventForm) }}
         {{ form_errors(cancelEventForm) }}
         {{ form_rest(cancelEventForm) }}
@@ -54,7 +55,7 @@
         </div>
     </div>
     </div>
-
+    </div>
 {% endblock %}
 
 {% block title %}
