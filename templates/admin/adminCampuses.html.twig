@@ -6,4 +6,42 @@
 
 
     <h1>Gérer les campus</h1>
+
+<div class="tableau-admin">
+    <table>
+        <thead>
+        <tr>
+            <th>Campus</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+
+<tbody>
+
+{% for campus in campuses %}
+<tr>
+<td>{{ campus.name }}</td>
+<td><a href="">Modifier</a> <a href="">Supprimer</a></td>
+</tr>
+{% endfor %}
+
+
+<tr>
+    <td>
+{#            <input type="text" placeholder="Paris">#}
+        {{form_start (campusForm)}}
+        {{form_widget (campusForm)}}
+        {{form_errors (campusForm)}}
+        {{form_rest (campusForm)}}
+    </td>
+    <td><button type="submit">Ajouter</button></td>
+    {{ form_end (campusForm) }}
+{#    <td><a href="{{ path('dashboard_campusAdd')}}">Ajouter</a></td></form>#}
+</tr>
+
+</tbody>
+
+
+      </table>
+</div>
 {% endblock %}
