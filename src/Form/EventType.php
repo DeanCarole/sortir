@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Campus;
+use App\Entity\City;
 use App\Entity\Event;
 use App\Entity\Place;
 
@@ -49,6 +50,15 @@ class EventType extends AbstractType
                 'choice_label' => 'name',
                 'label' => 'Lieu : '
             ]);
+//            ->add('city', EntityType::class, ['class' => City::class,
+//                'choice_label' =>'name',
+//                'label' => 'Ville : ',
+//                'query_builder' => function (EntityRepository $er) {
+//                    return $er->createQueryBuilder('u')
+//                        ->orderBy('u.username', 'ASC');
+//                },
+
+//            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

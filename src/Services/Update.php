@@ -46,7 +46,7 @@ class Update
         //récupère le statut de l'évènement
         $status = $event->getState()->getLabel();
 
-        //cette variable stocke la fin de l'évènement (date + début)
+        //cette variable stocke la fin de l'évènement (date + durée)
        $event1 = clone $event->getStartDateTime();
        $event1->modify("+" .$event->getDuration() . "minute");
 

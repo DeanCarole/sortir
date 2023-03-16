@@ -1,0 +1,16 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+
+    {{ parent() }} | 403
+{% endblock %}
+
+{% block body %}
+    <h2>403 !</h2>
+    <h3> {{ exception.message }}</h3>
+
+    <p>
+        La page n'a pas été trouvée. <br> Tu n'as pas les droits pour accéder à cette page. Retourne sur la page d'accueil. <br><a href="{{ path('main_home') }}">Accueil</a>.
+    </p>
+
+{% endblock %}
