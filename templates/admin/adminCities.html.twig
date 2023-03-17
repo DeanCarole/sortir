@@ -12,18 +12,19 @@
 
     <br>
 
-    <div class="container-filter">
-        <div class="filter-item">
+    <div class="container-admin">
+        <div class="">
             {{ form_start(filterCities) }}
             {{ form_errors(filterCities) }}
             {{ form_row(filterCities.name) }}
-
         </div>
-        <div class="filter-item">
+        <div class="filter-admin">
             <button class="login-button green">Rechercher</button>
         </div>
         {{ form_end(filterCities) }}
     </div>
+
+    <br>
 
     <div class="tableau-admin">
         <table>

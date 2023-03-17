@@ -13,17 +13,19 @@
 
     <br>
 
-    <div class="container-filter">
-        <div class="filter-item">
+    <div class="container-admin">
+        <div class="">
             {{ form_start(filterCampuses) }}
             {{ form_errors(filterCampuses) }}
             {{ form_row(filterCampuses.name) }}
         </div>
-        <div class="filter-item">
+        <div class="filter-admin">
             <button class="login-button green">Rechercher</button>
         </div>
         {{ form_end(filterCampuses) }}
     </div>
+
+    <br>
 
 <div class="tableau-admin">
     <table>

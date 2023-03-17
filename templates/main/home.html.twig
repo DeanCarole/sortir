@@ -122,6 +122,15 @@
                         {% endif %}
 
                     {% endif %}
+
+
+                    {% if event.state.label == 'closed' %}
+                        {% if app.user and app.user.isRegister(event) %}
+                            -
+                            <a href="{{ path('main_addUserEvent', {'id': event.id}) }}">Se désinscrire</a>
+                        {% endif %}
+                    {% endif %}
+
                 </td>
                 {% endfor %}
             </tbody>
