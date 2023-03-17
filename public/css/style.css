@@ -1,5 +1,5 @@
 body{
-    background: linear-gradient(#b7dbf6, #2d77fa);
+    background: linear-gradient(#b7dbf6, #5991f5);
     background-attachment: fixed;
     background-position: center center;
     font-family: 'Source Sans Pro', sans-serif;
@@ -63,7 +63,7 @@ button {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-left: 65px;
+    margin-left: 63px;
 }
 
 /*label*/
@@ -373,5 +373,85 @@ footer {
     text-align: center;
 }
 
+/* Styles pour les écrans de taille moyenne et plus grands */
 
+@media screen and (min-width: 768px) {
+
+    /* Formulaire */
+
+    form, .profil, .profil2 {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .profil2 {
+        max-width: 400px;
+    }
+
+    .container2 {
+        margin-left: 65px;
+    }
+
+    /* Tableau des sorties de la page d'accueil */
+
+    .tableau {
+        min-width: 1200px;
+        width: 80%;
+    }
+
+    /* Image profil user */
+
+    .imgUser {
+        min-width: 140px;
+    }
+
+    /* Bouton connexion (page d'accueil logout) */
+
+    .login-button {
+        font-size: 1.2rem;
+        padding: 16px 32px;
+    }
+
+}
+
+/* Styles pour les écrans de petite taille */
+
+@media screen and (max-width: 767px) {
+
+    /* Formulaire */
+
+    form, .profil, .profil2 {
+        max-width: 90%;
+        margin: 0 auto;
+    }
+
+    .profil2 {
+        max-width: 100%;
+    }
+
+    .container2 {
+        margin-left: 0;
+    }
+
+    /* Tableau des sorties de la page d'accueil */
+
+    .tableau {
+        min-width: 300px;
+        width: 90%;
+    }
+
+    /* Image profil user */
+
+    .imgUser {
+        min-width: 80px;
+    }
+
+    /* Bouton connexion (page d'accueil logout) */
+
+    .login-button {
+        font-size: 1rem;
+        padding: 12px 24px;
+    }
+
+}
 
