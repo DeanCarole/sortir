@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-
+Participant
 {% endblock %}
 
 {% block body %}
@@ -20,10 +20,10 @@
         <div> Téléphone : {{ user.phone }} </div>
         <div> Email : {{ user.email }} </div>
         <div> Campus : {{ user.campus.name }} </div>
-        </div>
+
         <a href="{{ path('main_home') }}">
             <button type="button" class="login-button">Retour</button>
         </a>
-
+    </div>
 {% endblock %}
 
